@@ -1,0 +1,12 @@
+
+  <div class="row" *ngIf="templateData">
+  
+            <div class="col-sm-12 "  [innerHtml]="safeHtml(templateData.template)">
+     
+            </div>
+            <div class="col-sm-12 text-right">
+                <button type="submit" class="btn btn-submit" (click)="saveEmailtemplate()" >Sauvegarder</button>
+            </div>
+        </div>
+      
+

@@ -1,0 +1,256 @@
+<!-- TOP Nav Bar -->
+<div class="iq-top-navbar">
+    <div class="iq-navbar-custom">
+       <div class="iq-sidebar-logo">
+                <div class="top-logo">
+                    <a [routerLink]="'/'" class="logo">
+                    <img src="assets/images/logo1.svg" class="img-fluid" alt="">
+                    <span>Dprosoft</span>
+                    </a>
+                </div>
+        </div>
+     
+       <nav class="navbar navbar-expand-lg navbar-light p-0">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" 
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                     aria-expanded="false" aria-label="Toggle navigation">
+                <i class="ri-menu-3-line"></i>
+          </button>
+          <div class="iq-menu-bt align-self-center">
+             <div class="wrapper-menu">
+                <div class="line-menu half start"></div>
+                <div class="line-menu"></div>
+                <div class="line-menu half end"></div>
+             </div>
+          </div>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+             <ul class="navbar-nav ml-auto navbar-list">
+
+               <li class="nav-item mr-5" >
+                 
+                  <button type="button" (click)="openModal(quickAccessModal)" class="btn mt-3 btn-primary" style="border-radius: 50rem!important;" >
+                     <i class="ri-add-circle-fill"></i>
+                     Creer un nouveau besoin
+                  </button>
+
+               </li>
+              
+              
+                <li class="nav-item dropdown">
+                   
+                   <a href="#" class="search-toggle iq-waves-effect">
+                      <i class="ri-mail-line"></i>
+                      <span class="badge badge-pill badge-primary badge-up count-mail">1</span>
+                   </a>
+                   <div class="iq-sub-dropdown">
+                      <div class="iq-card shadow-none m-0">
+                         <div class="iq-card-body p-0 ">
+                            <div class="bg-primary p-3">
+                               <h5 class="mb-0 text-white">Tous les Messages<small class="badge  badge-light float-right pt-1">1</small></h5>
+                            </div>
+
+                            <a href="#" class="iq-sub-card" >
+                               <div class="media align-items-center">
+                                  <div class="">
+                                     <img class="avatar-40 rounded" src="assets/images/user/01.jpg" alt="">
+                                  </div>
+                                  <div class="media-body ml-3">
+                                     <h6 class="mb-0 ">Nik Emma Watson</h6>
+                                     <small class="float-left font-size-12">13 Jun</small>
+                                  </div>
+                               </div>
+                            </a>
+
+                         </div>
+                      </div>
+                   </div>
+                </li>
+                
+                <li class="nav-item">
+                   <a href="#" class="search-toggle iq-waves-effect">
+                      <i class="ri-notification-2-line"></i>
+                      <span class="bg-danger dots"></span>
+                   </a>
+                   <div class="iq-sub-dropdown">
+                      <div class="iq-card shadow-none m-0">
+                         <div class="iq-card-body p-0 ">
+                            <div class="bg-danger p-3">
+                               <h5 class="mb-0 text-white">Toutes les Notifications<small class="badge  badge-light float-right pt-1">1</small></h5>
+                            </div>
+                            
+                            <a href="#" class="iq-sub-card" >
+                               <div class="media align-items-center">
+                                  <div class="">
+                                     <img class="avatar-40" src="assets/images/small/jpg.svg" alt="">
+                                  </div>
+                                  <div class="media-body ml-3">
+                                     <h6 class="mb-0 ">Modification effectuee </h6>
+                                     <small class="float-right font-size-12">Maintenant</small>
+                                     <p class="mb-0">120 MB</p>
+                                  </div>
+                               </div>
+                            </a>
+
+                         </div>
+                      </div>
+                   </div>
+                </li>
+                <li class="nav-item iq-full-screen">
+                    <a href="#" class="iq-waves-effect" id="btnFullscreen">
+                        <i class="ri-fullscreen-line"></i>
+                    </a>
+                </li>
+             
+             </ul>
+          </div>
+          <ul class="navbar-list" *ngIf="userData">
+             <li>
+                <a href="#" class="search-toggle iq-waves-effect  text-white">
+                   <img [src]="apiUrlBackend + userData.infoDataSup.profilphoto" class="img-fluid rounded" alt="user">
+                  </a>
+                <div class="iq-sub-dropdown iq-user-dropdown">
+                   <div class="iq-card shadow-none m-0">
+                      <div class="iq-card-body p-0 ">
+                         <div class="bg-primary p-3">
+                            <h5 class="mb-0 text-white line-height">{{ userData.fullname }}</h5>
+                         </div>
+
+                         <a [routerLink]="'user-account'" class="iq-sub-card iq-bg-primary-hover">
+                            <div class="media align-items-center">
+                               <div class="rounded iq-card-icon iq-bg-primary">
+                                  <i class="ri-file-user-line"></i>
+                               </div>
+                               <div class="media-body ml-3">
+                                  <h6 class="mb-0 ">Mon Profil</h6>
+                                  <p class="mb-0 font-size-12">Voir les informations personnelles.</p>
+                               </div>
+                            </div>
+                         </a>
+                        
+                         <a href="account-setting.html" class="iq-sub-card iq-bg-primary-danger-hover">
+                            <div class="media align-items-center">
+                               <div class="rounded iq-card-icon iq-bg-danger">
+                                  <i class="ri-account-box-line"></i>
+                               </div>
+                               <div class="media-body ml-3">
+                                  <h6 class="mb-0 ">Parametres du compte</h6>
+                                  <p class="mb-0 font-size-12">Gerer vos parametres</p>
+                               </div>
+                            </div>
+                         </a>
+
+                         <div class="d-inline-block w-100 text-center p-3">
+                            <button class="iq-bg-danger iq-sign-btn"  type="button" (click)="onLogout()">
+                                Se Deconnecter<i class="ri-login-box-line ml-2"></i>
+                            </button>
+                         </div>
+
+                      </div>
+                   </div>
+                </div>
+             </li>
+          </ul>
+       </nav>
+    </div>
+ </div>
+ <!-- TOP Nav Bar END -->
+
+ <ng-template #quickAccessModal>
+
+   <div class="modal-content">
+      
+      <div class="modal-body ">
+        <div class="iq-card w-full">
+                        <div class="iq-card-header d-flex justify-content-between">
+                           <div class="iq-header-title">
+                              <h4 class="card-title">Creation d'un nouveau besoin</h4>
+                           </div>
+                        </div>
+                        <div class="iq-card-body">
+                          <form [formGroup]="besoinForm" (ngSubmit)="onSubmit()">
+                             
+                              <div class="form-group">
+                                 <label for="exampleInputPlaceholder">Motif</label>
+                                 <input type="text" class="form-control"  formControlName="title" [ngClass]="{ 'is-invalid': isFormSubmitted && besoinControl.title.errors }" id="exampleInputPlaceholder" placeholder="Le besoin...">
+                                 <div *ngIf="isFormSubmitted && besoinControl.title.errors" class="invalid-feedback">
+                                    <div *ngIf="besoinControl.title.errors.required">Le titre est obligatoire </div>
+                                </div>
+                              </div>
+                              
+                              <div class="form-group">
+                                 <label for="exampleFormControlSelect1">Service responsable</label>
+                                 <select class="form-control" id="exampleFormControlSelect1" *ngIf="services"  formControlName="service" [ngClass]="{ 'is-invalid': isFormSubmitted && besoinControl.service.errors }">
+                                    <option selected="" disabled="">Selectionner le service responsable</option>
+                                    <option *ngFor="let service of services" [value]="service._id" [innerText]="service.name"></option>
+                                 </select>
+                                 <div *ngIf="isFormSubmitted && besoinControl.service.errors" class="invalid-feedback">
+                                    <div *ngIf="besoinControl.service.errors.required">Le service est obligatoire </div>
+                                </div>
+                              </div>
+
+                              <div class="form-group mapgoogle-autocomplete-form-custom">
+                                 <label for="exampleInputPlaceholder">Lieu de destination</label>
+                                       <input type="text" autocomplete="off" (keyup)="findLocation($event)"  class="form-control mapgoogle-autocomplete-custom"
+                                             id="exampleInputPlaceholder" placeholder="Le lieu de destination">
+      
+                                       <input type="hidden" class="lat-value" name="lat" value="">
+                                       <input type="hidden" class="lng-value" name="lng" value="" >
+                                       <input type="hidden" class="addres-value" name="address" value="" >
+      
+      
+                                    <div id="custom-output-autocomplete" class="pac-container" style="display:none;"></div>
+                     
+                              </div>
+                              <div class="form-group">
+
+                                          <div class="custom-control custom-radio custom-control-inline">
+                                          <input type="radio" id="national" formControlName="geographique" name="geographique" value="nation" class="custom-control-input">
+                                          <label class="custom-control-label" for="national">National</label>
+                                       </div>
+            
+                                       <div class="custom-control custom-radio custom-control-inline">
+                                          <input type="radio" id="sousRegion" formControlName="geographique" name="geographique" value="sousRegion" class="custom-control-input">
+                                          <label class="custom-control-label" for="sousRegion">Sous régional</label>
+                                    </div>
+            
+                                          <div class="custom-control custom-radio custom-control-inline">
+                                          <input type="radio" id="international" formControlName="geographique" name="geographique" value="inter" class="custom-control-input">
+                                          <label class="custom-control-label" for="international">International</label>
+                                       </div>
+   
+   
+                              </div>
+
+                              <div class="form-group">
+
+                                          <div class="custom-control custom-radio custom-control-inline">
+                                          <input type="radio" id="customRadio6" formControlName="ratingville" value="grandeVille" name="ratingville" class="custom-control-input">
+                                          <label class="custom-control-label" for="customRadio6">Grande ville</label>
+                                       </div>
+         
+                                       <div class="custom-control custom-radio custom-control-inline">
+                                          <input type="radio" id="customRadio7" value="petiteVille" formControlName="ratingville" name="ratingville" class="custom-control-input">
+                                          <label class="custom-control-label" for="customRadio7">Petite ville</label>
+                                    </div>
+         
+ 
+                           </div>
+
+                              <div class="form-group">
+                                 <label for="exampleFormControlTextarea1">Justificatifs</label>
+                                 <textarea class="form-control" id="exampleFormControlTextarea1"  formControlName="description" [ngClass]="{ 'is-invalid': isFormSubmitted && besoinControl.description.errors }" rows="3"></textarea>
+                                 <div *ngIf="isFormSubmitted && besoinControl.description.errors" class="invalid-feedback">
+                                    <div *ngIf="besoinControl.description.errors.required">La description est obligatoire </div>
+                                </div>
+                              </div>
+                              <button type="submit" class="btn btn-primary">Soumettre</button>
+
+                              </form>
+                        </div>
+                     </div>
+      </div>
+      
+   </div>
+
+
+</ng-template>

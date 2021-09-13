@@ -1,0 +1,19 @@
+
+    <div *ngIf="field && formCard" [formGroup]="formCard">
+
+                <label for="geocoder" *ngIf="field.controlLabel">{{field.controlLabel}}</label>
+                <input type="text" class="form-control" id="geocoder"  [ngClass]="{'is-invalid' : !isValid && (isDirty || isTouched) }"
+                        [formControlName]="field.controlName"
+                        [name]="field.controlName"
+                        [value]="field.currentValue ? field.currentValue  : ''"
+                        [required]="field.validators.required">
+
+                <div class="invalid-feedback" *ngIf="!isValid && (isDirty || isTouched)">
+                                <div *ngIf="isRequired">Champs Obligatoire</div>
+                                <div *ngIf="isMin">Minimum  est {{field.validators.minlength}}</div>
+                </div>
+
+                
+    </div>
+
+<pre id="result"></pre>

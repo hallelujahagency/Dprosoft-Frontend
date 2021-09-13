@@ -1,0 +1,186 @@
+
+        <div class="iq-card" *ngIf="formComponent" >
+            <div class="iq-card-header d-flex justify-content-between">
+                        <div class="iq-header-title">
+                            <h4 class="card-title"> {{ formComponent.title}}</h4>
+                        </div>
+            </div>
+            <div class="iq-card-body">
+
+                <ul class="nav nav-pills mb-3 nav-fill" id="pills-tab-profil" role="tablist">
+                    <li class="nav-item">
+                       <a class="nav-link active" id="pills-profil-tab-fill" 
+                            data-toggle="pill" href="#pills-profil-fill" 
+                            role="tab" aria-controls="pills-profil" 
+                            aria-selected="true">
+                            Généralité
+                        </a>
+                    </li>
+                   
+                    <li class="nav-item">
+                       <a class="nav-link" id="pills-frais-tab-fill" 
+                            data-toggle="pill" href="#pills-frais-fill" 
+                            role="tab" aria-controls="pills-frais" 
+                            aria-selected="false">
+                            Mes Frais
+                        </a>
+                    </li>
+                   
+                 </ul>
+                 <div class="tab-content mt-5" id="pills-tabContent-1">
+                    <div class="tab-pane fade active show " id="pills-profil-fill" role="tabpanel" aria-labelledby="pills-profil-tab-fill">
+                      
+                        <form [formGroup]="formDynamic" (ngSubmit)="submitForm()" >
+                            <div class="form-row ">
+                                <ng-template ngFor let-input [ngForOf]="formComponent.component">
+        
+                                    <div  [ngClass]="input.styleSize ? input.styleSize : 'col-md-6 mb-3'">
+        
+                                        <ng-container [ngSwitch]="input.controlType">
+        
+                                             <ng-template [ngSwitchCase]="'text'" >
+                                                <app-option-field-text [field]="input" [formCard]="formDynamic"></app-option-field-text>
+                                            </ng-template>
+
+                                             <!--<ng-template [ngSwitchCase]="'localisation'" >
+                                                <app-option-field-localisation [field]="input" [formCard]="formDynamic"></app-option-field-localisation>
+                                            </ng-template>-->
+        
+                                            <ng-template [ngSwitchCase]="'radio'">
+                                                <app-option-filed-radio [field]="input" [formCard]="formDynamic"></app-option-filed-radio>
+                                            </ng-template>
+        
+                                            <ng-template [ngSwitchCase]="'select'">
+                                                <app-option-field-select [field]="input" [formCard]="formDynamic"></app-option-field-select>
+                                            </ng-template>
+        
+                                            <!--<ng-template [ngSwitchCase]="'checkbox'">
+                                                <app-option-field-chekbox [field]="input" [formCard]="formDynamic"></app-option-field-chekbox>
+                                            </ng-template>-->
+
+                                            <ng-template [ngSwitchCase]="'date'">
+                                                        <div class="form-group">
+                                                            <label [attr.for]="input.controlName" *ngIf="input.controlLabel">{{input.controlLabel}}</label>
+                                                            <input type="date" class="form-control" [id]="input.controlName" value="2021-07-10">
+                                                        </div>
+                                            </ng-template>
+
+                                            <ng-template [ngSwitchCase]="'localisation'">
+                                                <div class="form-group">
+                                                    <label [attr.for]="input.controlName" *ngIf="input.controlLabel">{{input.controlLabel}}</label>
+                                                    <input type="text" class="form-control" [id]="input.controlName" placeholder="Entrer la ville">
+                                                </div>
+                                            </ng-template>
+
+                                            <ng-template [ngSwitchCase]="'number'">
+                                                <div class="form-group">
+                                                    <label [attr.for]="input.controlName" *ngIf="input.controlLabel">{{input.controlLabel}}</label>
+                                                    <input type="number" [attr.placeholder]="input.placeholder" class="form-control" [id]="input.controlName" value="2021-07-10">
+                                                </div>
+                                            </ng-template>
+
+                                            <ng-template [ngSwitchCase]="'checkbox'">
+                                                <div class="form-group" style="margin-top: 35px;">
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input" [id]="input.controlName">
+                                                        <label class="custom-control-label" [attr.placeholder]="input.placeholder" [attr.for]="input.controlName">{{input.controlLabel}}</label>
+                                                    </div>
+                                                </div>
+                                            </ng-template>
+
+                                            <ng-template [ngSwitchCase]="'textarea'">
+
+                                                <div class="form-group">
+                                                    <label [attr.for]="input.controlName">{{input.controlLabel}}</label>
+                                                    <textarea class="form-control" [attr.placeholder]="input.placeholder" [id]="input.controlName" rows="3"></textarea>
+                                                 </div>
+
+                                            </ng-template>
+                                          
+
+                                        </ng-container>
+
+                                        
+                                    </div>
+                    
+                                </ng-template>
+        
+                            </div>
+        
+                            <div class="form-group">
+                                        <button class="btn btn-primary" type="submit" [disabled]="formDynamic.invalid">Continuer</button>
+                            </div>
+                        </form>
+                        
+
+                    </div>
+                  
+                    <div class="tab-pane fade" id="pills-frais-fill" role="tabpanel" aria-labelledby="pills-frais-tab-fill">
+                      
+                        <div class="row">
+                            <div class="col-sm-8">
+                                <h6 class="card-title btn-primary mr-1" >Tableau recapitulatif des montants previsionnels, reels et ecart</h6>
+
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="card-title"> --- </h6>
+                                        <p > Indemnite</p>
+                                        <p >Frais</p>
+                                        <p > Facture</p>
+                                    </div>
+        
+                                    <div class="col-sm-3">
+                                        <h6 class="card-title" >Previsionnel i</h6>
+                                        <p > 30 $</p>
+                                        <p > - </p>
+                                        <p > - </p>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <h6 class="card-title" >Reel i</h6>
+                                        <p > - </p>
+                                        <p > - </p>
+                                        <p > - </p>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <h6 class="card-title" >Ecart i</h6>
+                                        <p > - </p>
+                                        <p > - </p>
+                                        <p > - </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4">
+                                <h6 class="card-title btn-primary">Informations complementaires</h6>
+                              
+                                   
+                                        <h6 class="card-title"> Indemnite </h6>
+                                       
+                                        <p >Frais</p>
+                                        <p > Facture</p>
+                                   
+                                        <h6 class="card-title" >Demande d avances</h6>
+                                       
+                                        <p > Aucune demande d avance</p>
+                                    
+                                   
+                               
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary" type="submit">Envoyer</button>
+                        </div>
+
+                    </div>
+                    
+                 </div>
+
+                
+                <div *ngIf="submitted">
+                    <pre>{{formDynamic.value | json}}</pre>
+
+                </div>
+
+            </div>
+        
+</div>

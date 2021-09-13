@@ -1,0 +1,10 @@
+<div class="row">
+                   
+                    <ng-template ngFor let-input [ngForOf]="formCard">
+                        <div *ngIf="input" [ngClass]="input.style ? input.style : 'col-sm-12 col-lg-6'">
+                            <app-dynamic-form-builder [formCardSingle]="input"></app-dynamic-form-builder>
+                        </div>
+                           
+                    </ng-template>           
+     
+</div>

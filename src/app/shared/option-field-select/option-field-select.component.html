@@ -1,0 +1,22 @@
+
+<div *ngIf="field && formCard" [formGroup]="formCard">
+
+    <label [attr.for]="field.controlName" *ngIf="field.controlLabel">{{field.controlLabel}}</label>
+
+
+            <select class="form-control" [formControlName]="field.controlName"
+                     [name]="field.controlName" [id]="field.controlName"  [required]="field.validators.required" 
+                     [ngClass]="{'is-invalid' : !isValid && (isDirty || isTouched) }">
+                     
+                    <option value="">{{field.placeholder}}</option>
+                    <option *ngFor="let option of field.options" [value]="option.value">{{option.optionName}}</option>
+          </select>
+
+
+    <div class="invalid-feedback" *ngIf="!isValid && (isDirty || isTouched)">
+                    <div *ngIf="isRequired">Champs Obligatoire</div>
+                    <div *ngIf="isMin">Minimum  est {{field.validators.minlength}}</div>
+    </div>
+
+              
+</div>

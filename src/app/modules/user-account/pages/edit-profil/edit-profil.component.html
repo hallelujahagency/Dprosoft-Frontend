@@ -1,0 +1,681 @@
+<div class="row" *ngIf="userData">
+    <div class="col-lg-12">
+       <div class="iq-card">
+          <div class="iq-card-body p-0">
+             <div class="iq-edit-list">
+                <ul class="iq-edit-profile d-flex nav nav-pills">
+                   <li class="col-md-2 p-0">
+                      <a class="nav-link active" data-toggle="pill" href="#personal-information">
+                         Général
+                      </a>
+                   </li>
+
+                   <li class="col-md-2 p-0">
+                     <a class="nav-link" data-toggle="pill" href="#manage-contact">
+                      Gestion contact
+                     </a>
+                  </li>
+
+                   <li class="col-md-3 p-0">
+                      <a class="nav-link" data-toggle="pill" href="#chang-pwd">
+                         Changer mot de passe
+                      </a>
+                   </li>
+
+                   <li class="col-md-3 p-0">
+                    <a class="nav-link" data-toggle="pill" href="#preferences">
+                     Coordonnées bancaires
+                    </a>
+                 </li>
+                 
+                 <li class="col-md-2 p-0">
+                  <a class="nav-link" data-toggle="pill" href="#others">
+                   Autres
+                  </a>
+               </li>
+                </ul>
+             </div>
+          </div>
+       </div>
+    </div>
+    <div class="col-lg-12">
+       <div class="iq-edit-list-data">
+          <div class="tab-content">
+             <div class="tab-pane fade active show" id="personal-information" role="tabpanel">
+                 <div class="iq-card">
+                   <div class="iq-card-header d-flex justify-content-between">
+                      <div class="iq-header-title">
+                         <h4 class="card-title">Informations personnelles</h4>
+                      </div>
+                   </div>
+                   <div class="iq-card-body">
+                      <form>
+                         <div class="form-group row align-items-center">
+                            <div class="col-md-12">
+                               <div class="profile-img-edit">
+                                  <img class="profile-pic" [src]="apiUrlBackend+userData.infoDataSup.profilphoto" alt="profile-pic">
+                                  <div class="p-image" (click)="imageUplaod()">
+                                    <i class="ri-pencil-line upload-button"></i>
+                                    <input class="file-upload-profil" style="display: none;" type="file" (change)="onFileChange($event)"/>
+                                 </div>
+                               </div>
+                            </div>
+                         </div>
+                         <div class=" row align-items-center">
+                            <div class="form-group col-sm-12">
+                               <label for="fname">Nom Prénom(s):</label>
+                               <input type="text" class="form-control" id="fname"  [(ngModel)]="userData.fullname" [ngModelOptions]="{standalone: true}">
+                            </div>
+                           
+
+                            <div class="form-group col-sm-6">
+                                <label for="matUser">Matricule:</label>
+                                <input type="text" class="form-control" id="matUser"  [(ngModel)]="userData.matricule" [ngModelOptions]="{standalone: true}">
+                             </div>
+
+                            <div class="form-group col-sm-6">
+                               <label for="Fonction">Poste:</label>
+                               <input type="text" class="form-control" id="Fonction" [(ngModel)]="userData.infoDataSup.fonction" [ngModelOptions]="{standalone: true}">
+                            </div>
+                            <div class="form-group col-sm-6">
+                               <label class="d-block">Sexe:</label>
+                                <div class="custom-control custom-radio custom-radio-color custom-control-inline">
+                                    <input type="radio" id="gender-homme" value="Homme" name="gender" class="custom-control-input bg-primary" [(ngModel)] ="userData.infoDataSup.sexe"  >
+                                    <label class="custom-control-label" for="gender-homme"> Homme </label>
+                                </div>
+                                <div class="custom-control custom-radio custom-radio-color custom-control-inline">
+                                    <input type="radio" id="gender-femme" value="Femme" name="gender" class="custom-control-input bg-primary" [(ngModel)] ="userData.infoDataSup.sexe" >
+                                    <label class="custom-control-label" for="gender-femme"> Femme </label>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-6">
+                               <label for="dob">Date de naissance:</label>
+                               <input type="date" class="form-control" id="dob" [(ngModel)]="userData.infoDataSup.birthday" [ngModelOptions]="{standalone: true}">
+                            </div>
+                            <div class="form-group col-sm-6">
+                               <label>Statut matrimonial:</label>
+                               <select class="form-control" id="mrgstatus" [(ngModel)]="userData.infoDataSup.statutMatri" [ngModelOptions]="{standalone: true}">
+                                  <option value="Marrié(e)">Marrié(e)</option>
+                                  <option value="Divorcé(e)">Divorcé(e)</option>
+                                  <option value="Célibataire">Célibataire</option>
+                                  <option value="Separé(e)">Separé(e) </option>
+                               </select>
+                            </div>
+                            <div class="form-group col-sm-6">
+                               <label>Service:</label>
+                               <select class="form-control" [(ngModel)]="userData.service" [ngModelOptions]="{standalone: true}">
+                                  <option *ngFor="let service of services" [innerText]="service.name" [value]="service._id"></option>
+                                  
+                               </select>
+                            </div>
+
+                         </div>
+                         <button type="button" (click)="onSubmitUserUpdate()" class="btn btn-primary mr-2">Enregister</button>
+                         <button type="reset" class="btn iq-bg-danger">Annuler</button>
+                      </form>
+                   </div>
+                </div>
+
+                <div class="iq-card">
+                  <div class="iq-card-header d-flex justify-content-between">
+                     <div class="iq-header-title">
+                        <h4 class="card-title">Mes adresses</h4>
+                     </div>
+                  </div>
+                  <div class="iq-card-body">
+                     <form>
+
+                        <div class=" row align-items-center">
+                                 <h4 class="card-title">Adresse professionnelle</h4>
+
+                           <div class="form-group col-sm-12">
+                              <label>Address:</label>
+                              <textarea class="form-control" name="address" rows="5" 
+                                       style="line-height: 22px;" [(ngModel)]="adressPro.adress" 
+                                       [ngModelOptions]="{standalone: true}">            
+                              </textarea>
+                           </div>
+
+                           <div class="form-group col-sm-12">
+                              <label for="cp-Pro">Code postal:</label>
+                              <input type="text" class="form-control" id="cp-Pro" [(ngModel)]="adressPro.codePostal" [ngModelOptions]="{standalone: true}"  >
+                           </div>
+
+
+                           <div class="form-group col-sm-12">
+                              <label for="ville-pro">ville:</label>
+                              <input type="text" class="form-control" id="ville-pro"  [(ngModel)]="adressPro.ville" [ngModelOptions]="{standalone: true}">
+                           </div>
+
+                        </div>
+
+                        <div class=" row align-items-center">
+                           <h4 class="card-title">Adresse personnelle</h4>
+
+                           <div class="form-group col-sm-12">
+                              <label>Address:</label>
+                              <textarea class="form-control" name="address" rows="5" 
+                                       style="line-height: 22px;" [(ngModel)]="adressPers.adress" 
+                                       [ngModelOptions]="{standalone: true}">
+                                          
+                              </textarea>
+                           </div>
+
+                           <div class="form-group col-sm-12">
+                              <label for="cp-pers">Code postal:</label>
+                              <input type="text" class="form-control" id="cp-pers"  [(ngModel)]="adressPers.codePostal" [ngModelOptions]="{standalone: true}">
+                           </div>
+
+
+                           <div class="form-group col-sm-12">
+                              <label for="ville-pers">ville:</label>
+                              <input type="text" class="form-control" id="ville-pers"  [(ngModel)]="adressPers.ville" [ngModelOptions]="{standalone: true}">
+                           </div>
+
+                        </div>
+                        <button type="button" (click)="onSubmitUserUpdateAdress()" class="btn btn-primary mr-2">Enregister</button>
+                        <button type="reset" class="btn iq-bg-danger">Annuler</button>
+                     </form>
+                  </div>
+               </div>
+             </div>
+             <div class="tab-pane fade" id="chang-pwd" role="tabpanel">
+                 <div class="iq-card">
+                   <div class="iq-card-header d-flex justify-content-between">
+                      <div class="iq-header-title">
+                         <h4 class="card-title">Changer mot de passe</h4>
+                      </div>
+                   </div>
+                   <div class="iq-card-body">
+                      <form role="form" [formGroup]="FormPasswordChange" novalidate  (ngSubmit)="onSubmitChangePassword()">
+                        
+                         <div class="form-group">
+                                    <label for="npass">Nouveau mot de passe:</label>
+                                    <input type="Password" class="form-control" id="npass" value="" formControlName="new_pass" [ngClass]="{ 'is-invalid':buttonDisabledChangepassword &&  f.new_pass.errors } ">
+                                <div *ngIf="buttonDisabledChangepassword && f.new_pass.errors" class="invalid-tooltip">
+                                    <div *ngIf="f.new_pass.errors.required">Votre mot de passe est Obligatoire!</div>
+                                    <div *ngIf="f.new_pass.errors.minlength">Votre mot de passe doit contenir au moins 7 caractères</div>
+                                </div>
+                         </div>
+                         <div class="form-group">
+                            <label for="vpass">Ré-saisiser le mot de passe (confirmation):</label>
+                                    <input type="Password" class="form-control" id="vpass" value="" formControlName="confirmPassword" [ngClass]="{ 'is-invalid': buttonDisabledChangepassword && f.confirmPassword.errors } ">
+                                    <div *ngIf="buttonDisabledChangepassword && f.confirmPassword.errors" >
+                                    <div *ngIf="f.confirmPassword.errors.required">Votre mot de passe est néccessaire</div>
+                                    <div *ngIf="f.confirmPassword.errors.mustMatch">Les deux mot de passe doivent être identiques</div>
+                                </div>
+                         </div>
+                         <button type="submit" [disabled]="buttonDisabledChangepassword" class="btn btn-primary mr-2">Enregistrer</button>
+                         <button type="reset" class="btn iq-bg-danger">Annuler</button>
+                      </form>
+                   </div>
+                </div>
+             </div>
+            
+             <div class="tab-pane fade" id="manage-contact" role="tabpanel">
+                 <div class="iq-card">
+                   <div class="iq-card-header d-flex justify-content-between">
+                      <div class="iq-header-title">
+                         <h4 class="card-title"> Gestion adresse</h4>
+                      </div>
+                   </div>
+                   <div class="iq-card-body">
+                      <form >
+                         <div class="form-group">
+                            <label for="cno">Contact:</label>
+                            <input type="text" [(ngModel)]="userData.contact" [ngModelOptions]="{standalone: true}"  class="form-control" id="cno" value="001 2536 123 458">
+                         </div>
+                         <div class="form-group">
+                           <label for="fixe">Fixe:</label>
+                           <input type="text" [(ngModel)]="userData.contact" [ngModelOptions]="{standalone: true}"  class="form-control" id="fixe" value="22 1 2536 123 458">
+                        </div>
+                         <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="text" [(ngModel)]="userData.email" [ngModelOptions]="{standalone: true}" class="form-control" id="email" value="nikjone@demo.com">
+                         </div>
+                        
+                         <button type="button"  (click)="onSubmitUserEmailContactChange()" class="btn btn-primary mr-2">Enregister</button>
+                         <button type="reset" class="btn iq-bg-danger">Annuler</button>
+                      </form>
+                   </div>
+                </div>
+             </div>  
+             
+             <div class="tab-pane fade" id="preferences" role="tabpanel">
+                <div class="iq-card">
+                  <div class="iq-card-header d-flex justify-content-between">
+                     <div class="iq-header-title">
+                        <h4 class="card-title">Coordonnées bancaires</h4>
+                     </div>
+                  </div>
+                  <div class="iq-card-body">
+                     <form >
+                        <div class="form-group">
+                           <label for="domCB">Domiciliation:</label>
+                           <input type="text"  [(ngModel)]="valueDomicialition" [ngModelOptions]="{standalone: true}"  class="form-control" id="domCB" value="">
+                        </div>
+                        <div class="form-group">
+                          <label for="ribCB">RIB:</label>
+                          <input type="text"  [(ngModel)]="valueRib" [ngModelOptions]="{standalone: true}"  class="form-control" id="ribCB" value="">
+                       </div>
+                       <div class="form-group">
+                        <label for="ibanCB">IBAN:</label>
+                        <div class="input-group">
+                             
+                           <input [type]="fieldTypeIBAN" [(ngModel)]="valueIban" [ngModelOptions]="{standalone: true}"  class="form-control" id="ibanCB" value="">
+                           <div class="input-group-prepend" style="cursor: pointer;">
+                              <span class="input-group-text" id="inputGroupPrepend2">
+                                 <i class="fa"
+                                 [ngClass]="{
+                                   'fa-eye-slash': !fieldTextTypeIBAN, 
+                                   'fa-eye': fieldTextTypeIBAN
+                                 }"
+                                 (click)="toggleFieldTextTypeLogin('IBAN')"></i>
+                              </span>
+                           </div>
+
+                        </div>
+                     </div>
+                        <div class="form-group">
+                           <label for="bicCB">BIC:</label>
+
+                           <div class="input-group">
+                             
+                              <input [type]="fieldTypeBIC" [(ngModel)]="valueBic" [ngModelOptions]="{standalone: true}" class="form-control" id="bicCB" value="">
+                              <div class="input-group-prepend" style="cursor: pointer;">
+                                 <span class="input-group-text" id="inputGroupPrepend2">
+                                    <i class="fa"
+                                    [ngClass]="{
+                                      'fa-eye-slash': !fieldTextTypeBIC, 
+                                      'fa-eye': fieldTextTypeBIC
+                                    }"
+                                    (click)="toggleFieldTextTypeLogin('BIC')"></i>
+                                 </span>
+                              </div>
+
+                           </div>
+
+                           
+                        </div>
+                       
+                        <button type="button"  (click)="onSubmitChangeInfoBank()" class="btn btn-primary mr-2">Enregister</button>
+                        <button type="reset" class="btn iq-bg-danger">Annuler</button>
+                     </form>
+                  </div>
+               </div>
+            </div>
+            <div class="tab-pane fade" id="others" role="tabpanel">
+               <div class="iq-card">
+                 <div class="iq-card-header d-flex justify-content-between">
+                    <div class="iq-header-title">
+                       <h4 class="card-title">Véhicule(s) ou Moto(s)</h4>
+                    </div>
+                 </div>
+                 <div class="iq-card-body">
+                
+                          <div class="row align-items-center">
+                                 <div class="col-sm-12 col-md-6">
+                                                <div id="displayOptions" [collapse]="displayOptionsCollapsed"  class="collapse dont-collapse-sm">
+                                                   <div class="d-inline-block">
+                                                         <div class="search-sm d-inline-block float-md-left mr-1 mb-1 align-top">
+
+                                                            <button class="btn btn-sm iq-bg-success" (click)="OnclickChange('ajout')"
+                                                                     *ngIf="ajoutOrListing === 'list'">
+                                                               <i class="ri-add-fill">
+                                                                  <span class="pl-1">Ajouter</span>
+                                                               </i>
+                                                            </button>
+
+                                                            <button class="btn btn-sm iq-bg-success" (click)="OnclickChange('list')"
+                                                                     *ngIf="ajoutOrListing === 'ajout' || ajoutOrListing === 'modifier'">
+                                                               <i class="ri-reply-fill">
+                                                                  <span class="pl-1">Retour</span>
+                                                               </i>
+                                                            </button>
+
+                                                         </div>
+                                                        
+                                                   </div>
+                                                </div> 
+                                               
+                                 </div>
+                                 <div class="col-12 mb-4 data-table-rows" *ngIf="ajoutOrListing === 'list'">
+                                    <ngx-datatable [rows]="vehicules"  [messages]="messagesData"  [columns]="columns" [columnMode]="ColumnMode.flex" [limit]="itemsPerPage" [headerHeight]="20"
+                                    [footerHeight]="100" #table [sorts]="[{ prop: 'date', dir: 'asc' }]" >
+                    
+                                                    <ngx-datatable-column name="Date" [flexGrow]="1.2">
+                                                            <ng-template ngx-datatable-header-template let-value="value" let-allRowsSelected="allRowsSelected"
+                                                            let-selectFn="selectFn">
+                                                            Immatriculation
+                                                            </ng-template>
+                                                            <ng-template ngx-datatable-cell-template let-row="row"> 
+                                                                <a class="c-pointer" [attr.title]="row.immatriculation" [innerText]="row.immatriculation"></a>
+                                                            </ng-template>
+                                                    </ngx-datatable-column>
+                    
+                                                    <ngx-datatable-column name="Type" [flexGrow]="1.2">
+                                                        <ng-template ngx-datatable-header-template let-value="value" let-allRowsSelected="allRowsSelected"
+                                                        let-selectFn="selectFn">
+                                                            Marque
+                                                        </ng-template>
+                                                        <ng-template ngx-datatable-cell-template let-row="row"> 
+                                                            <a class="c-pointer" [attr.title]="row.marque" [innerText]="row.marque"></a>
+                                                        </ng-template>
+                                                    </ngx-datatable-column>
+                    
+                                                    <ngx-datatable-column name="Statut" [flexGrow]="1.2">
+                                                        <ng-template ngx-datatable-header-template let-value="value" let-allRowsSelected="allRowsSelected"
+                                                        let-selectFn="selectFn">
+                                                            Statut
+                                                        </ng-template>
+                                                        <ng-template ngx-datatable-cell-template let-row="row"> 
+                                                            <a class="c-pointer" [attr.title]="row.statut" [innerText]="row.statut"></a>
+                                                        </ng-template>
+                                                    </ngx-datatable-column>
+
+                                                    <ngx-datatable-column name="Id"  [sortable]="false" [draggable]="false"
+                                                    [resizeable]="false" [flexGrow]="1.2">
+                                                            <ng-template ngx-datatable-header-template let-value="value" let-allRowsSelected="allRowsSelected"
+                                                                let-selectFn="selectFn">
+                                                                Action
+                                                            </ng-template>
+                                                            <ng-template ngx-datatable-cell-template  let-row="row">
+    
+                                                                    <button  type="button" class="btn btn-xs btn-success mb-2" (click)="OnclickChange('modifier', row._id)">
+                                                                        <i class="ri-pencil-line"></i>
+                                                                    </button>
+
+                                                                    <button  type="button" class="btn btn-xs btn-danger mb-2" (click)="deleteVehicule(row._id)">
+                                                                     Supprimer
+
+                                                                 </button>
+                                                            </ng-template>
+                                                    </ngx-datatable-column>
+                    
+                    
+                                                    <ngx-datatable-footer *ngIf="true">
+                                                        <ng-template ngx-datatable-footer-template let-rowCount="rowCount" let-pageSize="pageSize"
+                                                            let-selectedCount="selectedCount" let-curPage="curPage" let-offset="offset" let-limit="limit">
+                                                                <div class="w-100 d-flex justify-content-center">
+                                                                    <pagination [totalItems]="rowCount" [itemsPerPage]="pageSize" [maxSize]="5"
+                                                                    [customPreviousTemplate]="prevTemplate"  (pageChanged)="table.onFooterPage($event)"
+                                                                        [customNextTemplate]="nextTemplate">
+                                                                    </pagination>
+                                                                </div>
+                                                        </ng-template>
+                                                    </ngx-datatable-footer>
+                      
+                                    </ngx-datatable>
+                                </div>
+                                <div class="col-12 mb-4 data-table-rows" *ngIf="ajoutOrListing === 'ajout'">
+                                       <div class="iq-card" style="background-color: white;box-shadow: none;">
+                                          <div class="iq-card-header d-flex justify-content-between">
+                                             <div class="iq-header-title">
+                                                <h4 class="card-title">Ajouter un Véhicule</h4>
+                                             </div>
+                                          </div>
+                                          <div class="iq-card-body">
+                                          <form role="form" [formGroup]="FormAddVehicule" novalidate  (ngSubmit)="onSubmitAddVehicule()">
+                                             <div class="row">
+                              
+                                                
+                                                   <div class="form-group col-12 col-sm-12">
+                                                      <label for="exampleInputPlaceholder">Immatriculation</label>
+                              
+                                                      <input type="text" class="form-control" name="immatriculation" formControlName="immatriculation" 
+                                                                        [ngClass]="{ 'is-invalid':buttonDisabledAddVehicule &&  add.immatriculation.errors } ">
+                                                      <div *ngIf="buttonDisabledAddVehicule && add.immatriculation.errors" class="invalid-tooltip">
+                                                          <div *ngIf="add.immatriculation.errors.required">Immatriculation obligatoire!</div>
+                                                      </div>
+                                                   
+                                                   </div>
+                              
+                                                   
+                                                   <div class="form-group col-6 col-sm-6">
+                                                      <label for="exampleInputPlaceholder">Marque</label>
+                                                      <input type="text" class="form-control" name="marque" formControlName="marque" >
+                                                   
+                                                   </div>
+                              
+                                                   <div class="form-group col-6 col-sm-6">
+                                                      <label for="exampleInputPlaceholder">Type de Véhicule</label>
+                              
+                                                      
+                                                      <select class="form-control" id="exampleInputPlaceholder" formControlName="typeVehicule">
+                                                         <option selected="" disabled="">Select votre Type de Véhicule</option>
+                                                         <option>4 * 4</option>
+                                                         <option>AUTRE</option>
+                                                      </select>
+                                                   
+                                                   </div>
+                              
+                                                   <div class="form-group col-12 col-sm-12">
+                                                      <label for="exampleInputPlaceholder">Genre de Véhicule</label>
+                              
+                                                      <select class="form-control" id="exampleInputPlaceholder" formControlName="genreVehicule">
+                                                         <option selected="" disabled="">Select votre Genre de Véhicule</option>
+                                                         <option>Particulier</option>
+                                                         <option>Autre</option>
+                                                      </select>
+                                                   
+                                                   </div>
+                              
+                                                   <div class="form-group col-6 col-sm-6">
+                                                      <label for="exampleInputPlaceholder">Type de carburant</label>
+                              
+                                                      <select class="form-control" id="exampleInputPlaceholder" formControlName="carburant" 
+                                                               [ngClass]="{ 'is-invalid':buttonDisabledAddVehicule &&  add.carburant.errors } ">
+                                    
+                                                         <option selected="" disabled="">Select votre Type de carburant</option>
+                                                         <option>ESSENCE</option>
+                                                         <option>GAZOIL</option>
+                                                      </select>
+
+                                                      <div *ngIf="buttonDisabledAddVehicule && add.carburant.errors" class="invalid-tooltip">
+                                                         <div *ngIf="add.carburant.errors.required">Selectionner le type de carburant!</div>
+                                                      </div>
+                                                   
+                                                   </div>
+                              
+                                                   <div class="form-group col-6 col-sm-6">
+                                                      <label for="exampleInputPlaceholder">Puissance fiscale en (V)</label>
+                              
+                                                      <input type="number" class="form-control" name="puisFisc" formControlName="puisFisc" 
+                                                            [ngClass]="{ 'is-invalid':buttonDisabledAddVehicule &&  add.puisFisc.errors } ">
+
+                                                      <div *ngIf="buttonDisabledAddVehicule && add.puisFisc.errors" class="invalid-tooltip">
+                                                         <div *ngIf="add.puisFisc.errors.required">Renseigner la puissance fiscale!</div>
+                                                      </div>
+                                                   
+                                                   </div>
+                              
+                                                   <div class="form-group col-6 col-sm-6">
+                                                      <label for="exampleInputPlaceholder">Taux CO2</label>
+                              
+                                                      <input type="text" class="form-control" name="tauxCo" formControlName="tauxCo"
+                                                            [ngClass]="{ 'is-invalid':buttonDisabledAddVehicule &&  add.tauxCo.errors } ">
+
+                                                      <div *ngIf="buttonDisabledAddVehicule && add.tauxCo.errors" class="invalid-tooltip">
+                                                         <div *ngIf="add.tauxCo.errors.required">Renseigner le Taux CO2!</div>
+                                                      </div>
+                                                   
+                                                   </div>
+                                                   
+                                                   <div class="form-group col-6 col-sm-6">
+                                                      <label for="exampleInputPlaceholder">Date 1er mise en circulation</label>
+                              
+                                                      <input type="date" class="form-control" name="dateMiseEnCirulation" formControlName="dateMiseEnCirulation">
+                                                   
+                                                   </div>
+                              
+                                                   <div class="form-group col-lg-12 col-sm-12">
+                                                      <label for="exampleInputPlaceholder">Kilomètre parcouru</label>
+                              
+                                                      <input type="text" class="form-control" name="kmParcouru" formControlName="kmParcouru"
+                                                            [ngClass]="{ 'is-invalid':buttonDisabledAddVehicule &&  add.kmParcouru.errors } ">
+                                                      <div *ngIf="buttonDisabledAddVehicule && add.kmParcouru.errors" class="invalid-tooltip">
+                                                         <div *ngIf="add.kmParcouru.errors.required">Renseigner le Km parcouru!</div>
+                                                      </div>
+                                                   
+                                                   </div>
+                              
+                                             </div>
+                              
+
+                                                <button type="submit" [disabled]="buttonDisabledAddVehicule" class="btn btn-primary">Valider</button>
+                              
+                                                </form>
+                                          </div>
+                                       </div>
+                                </div>
+
+                                <div class="col-12 mb-4 data-table-rows" *ngIf="ajoutOrListing === 'modifier'">
+                                 <div class="iq-card" style="background-color: white;box-shadow: none;">
+                                    <div class="iq-card-header d-flex justify-content-between">
+                                       <div class="iq-header-title">
+                                          <h4 class="card-title">Modifier un Véhicule</h4>
+                                       </div>
+                                    </div>
+                                    <div class="iq-card-body" *ngIf="vehiculeSelectionner">
+                                    <form >
+                                       <div class="row">
+                        
+                                          
+                                             <div class="form-group col-12 col-sm-12">
+                                                <label for="exampleInputPlaceholder">Immatriculation</label>
+                        
+                                                <input type="text" class="form-control" name="immatriculation" [(ngModel)]="vehiculeSelectionner.immatriculation" [ngModelOptions]="{standalone: true}">
+                                                
+                                             
+                                             </div>
+                        
+                                             
+                                             <div class="form-group col-6 col-sm-6">
+                                                <label for="exampleInputPlaceholder">Marque</label>
+                                                <input type="text" class="form-control" name="marque"  [(ngModel)]="vehiculeSelectionner.marque" [ngModelOptions]="{standalone: true}">
+                                             
+                                             </div>
+                        
+                                             <div class="form-group col-6 col-sm-6">
+                                                <label for="exampleInputPlaceholder">Type de Véhicule</label>
+                        
+                                                
+                                                <select class="form-control" id="exampleInputPlaceholder" [(ngModel)]="vehiculeSelectionner.typeVehicule" [ngModelOptions]="{standalone: true}">
+                                                   <option  disabled="">Select votre Type de Véhicule</option>
+                                                   <option>4 * 4</option>
+                                                   <option>AUTRE</option>
+                                                </select>
+                                             
+                                             </div>
+                        
+                                             <div class="form-group col-12 col-sm-12">
+                                                <label for="exampleInputPlaceholder">Genre de Véhicule</label>
+                        
+                                                <select class="form-control" id="exampleInputPlaceholder" [(ngModel)]="vehiculeSelectionner.genreVehicule" [ngModelOptions]="{standalone: true}">
+                                                   <option  disabled="">Select votre Genre de Véhicule</option>
+                                                   <option>Particulier</option>
+                                                   <option>Autre</option>
+                                                </select>
+                                             
+                                             </div>
+                        
+                                             <div class="form-group col-6 col-sm-6">
+                                                <label for="exampleInputPlaceholder">Type de carburant</label>
+                        
+                                                <select class="form-control" id="exampleInputPlaceholder" [(ngModel)]="vehiculeSelectionner.carburant" [ngModelOptions]="{standalone: true}">
+                              
+                                                   <option  disabled="">Select votre Type de carburant</option>
+                                                   <option>ESSENCE</option>
+                                                   <option>GAZOIL</option>
+                                                </select>
+                                             
+                                             </div>
+                        
+                                             <div class="form-group col-6 col-sm-6">
+                                                <label for="exampleInputPlaceholder">Puissance fiscale en (V)</label>
+                        
+                                                <input type="number" class="form-control" name="puisFisc" [(ngModel)]="vehiculeSelectionner.puisFisc" [ngModelOptions]="{standalone: true}">
+
+                                             
+                                             </div>
+                        
+                                             <div class="form-group col-6 col-sm-6">
+                                                <label for="exampleInputPlaceholder">Taux CO2</label>
+                        
+                                                <input type="text" class="form-control" name="tauxCo"  [(ngModel)]="vehiculeSelectionner.tauxCo" [ngModelOptions]="{standalone: true}">
+
+                                             
+                                             </div>
+                                             
+                                             <div class="form-group col-6 col-sm-6">
+                                                <label for="exampleInputPlaceholder">Date 1er mise en circulation</label>
+                        
+                                                <input type="date" class="form-control" name="dateMiseEnCirulation"  [(ngModel)]="vehiculeSelectionner.dateMiseEnCirulation" [ngModelOptions]="{standalone: true}">
+                                             
+                                             </div>
+                        
+                                             <div class="form-group col-lg-12 col-sm-12">
+                                                <label for="exampleInputPlaceholder">Kilomètre parcouru</label>
+                        
+                                                <input type="text" class="form-control" name="kmParcouru"  [(ngModel)]="vehiculeSelectionner.kmParcouru" [ngModelOptions]="{standalone: true}">
+                                               
+                                             
+                                             </div>
+                        
+                                       </div>
+                        
+
+                                          <button type="button" (click)="onSubmitupdateVehicule()" class="btn btn-primary">Modifier</button>
+                        
+                                          </form>
+                                    </div>
+                                 </div>
+                          </div>
+                                            
+                            </div>
+                                    
+
+                 </div>
+              </div>
+           </div>
+          </div>
+       </div>
+    </div>
+ </div>
+
+
+
+
+
+
+
+
+
+ 
+ <ng-template #nextTemplate let-disabled="disabled" let-currentPage="currentPage">
+   <ng-container *ngIf="!disabled">
+      ➡️
+   </ng-container>
+   <ng-container *ngIf="disabled">
+      ⛔
+   </ng-container>
+</ng-template>
+   
+<ng-template #prevTemplate let-disabled="disabled" let-currentPage="currentPage">
+   <ng-container *ngIf="!disabled">
+      ⬅️
+   </ng-container>
+   <ng-container *ngIf="disabled">
+      ⛔
+   </ng-container>
+</ng-template>
+
+<ng-template #prevTemplate let-disabled="disabled" let-currentPage="currentPage">
+   <ng-container *ngIf="!disabled">
+      ⬅️
+   </ng-container>
+   <ng-container *ngIf="disabled">
+      ⛔
+   </ng-container>
+</ng-template>
+

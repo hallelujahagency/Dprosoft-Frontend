@@ -1,0 +1,55 @@
+
+        <div class="iq-card" *ngIf="formCardSingle" >
+                    <div class="iq-card-header d-flex justify-content-between">
+                                <div class="iq-header-title">
+                                    <h4 class="card-title"> {{ formCardSingle.title}}</h4>
+                                </div>
+                    </div>
+                    <div class="iq-card-body">
+
+                        <form [formGroup]="formDynamic" (ngSubmit)="submitForm()" >
+                            <div class="form-row">
+                                <ng-template ngFor let-input [ngForOf]="formCardSingle.component">
+
+                                    <div  [ngClass]="input.styleSize ? input.styleSize : 'col-md-6 mb-3'">
+
+                                        <ng-container [ngSwitch]="input.controlType">
+
+                                            <ng-template [ngSwitchCase]="'text'" >
+                                                <app-option-field-text [field]="input" [formCard]="formDynamic"></app-option-field-text>
+                                            </ng-template>
+
+                                            <ng-template [ngSwitchCase]="'radio'">
+                                                <app-option-filed-radio [field]="input" [formCard]="formDynamic"></app-option-filed-radio>
+                                            </ng-template>
+
+                                            <ng-template [ngSwitchCase]="'select'">
+                                                <app-option-field-select [field]="input" [formCard]="formDynamic"></app-option-field-select>
+                                            </ng-template>
+
+                                            <ng-template [ngSwitchCase]="'checkbox'">
+                                                <app-option-field-chekbox [field]="input" [formCard]="formDynamic"></app-option-field-chekbox>
+                                            </ng-template>
+
+
+                                        </ng-container>
+                                    
+                                        
+                                    </div>
+                    
+                                </ng-template>
+
+                            </div>
+
+                            <div class="form-group">
+                                        <button class="btn btn-primary" type="submit" [disabled]="formDynamic.invalid">Submit form</button>
+                            </div>
+                        </form>
+                        <div *ngIf="submitted">
+                            <pre>{{formDynamic.value | json}}</pre>
+
+                        </div>
+
+                    </div>
+                
+        </div>

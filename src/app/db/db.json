@@ -1,0 +1,159 @@
+{
+    "entreprises": [
+        { "id": 1, "libelle": "Direction des activités phamarceutiques", "licence": "full" }
+      ],
+      "roles": [
+                { "id": 1, "libelle": "Administrator", "active": "true", "see_all": "false" },
+                { "id": 2, "libelle": "Sous-Administrator", "active": "true", "see_all": "false" },
+                { "id": 3, "libelle": "Agent-Administrator", "active": "true", "see_all": "false" },
+                { "id": 4, "libelle": "Other-Administrator", "active": "true", "see_all": "false" },
+                { "id": 5, "libelle": "Saas Administrator", "active": "true", "see_all": "true" },
+                { "id": 6, "libelle": "Saas User", "active": "true", "see_all": "true" }
+      ],
+      "services": [
+                { 
+                    "id":1,
+                    "libelle":"La Direction",
+                    "entreprise_id":1,
+                    "created_at": null,
+                    "update_at": null
+                },
+                { 
+                    "id":2,
+                    "libelle":"Le DAF",
+                    "entreprise_id":1,
+                    "created_at": null,
+                    "update_at": null
+                },
+                { 
+                    "id":3,
+                    "libelle":"La Comptabilité",
+                    "entreprise_id":1,
+                    "created_at": null,
+                    "update_at": null
+                },
+                { 
+                    "id":4,
+                    "libelle":"Le Sécretariat",
+                    "entreprise_id":1,
+                    "created_at": null,
+                    "update_at": null
+                }
+  
+      ],
+    
+      "utilisateurs": [
+            { 
+            "id": 1,
+            "fullname": "Serge KOKOUA",
+            "rolesId": 1,
+            "fonction": 1,
+            "entrepriseID": null,
+            "email": "serge@entreprise.com",
+            "contact": "0789878475",
+            "created_at": null,
+            "update_at": null
+            },
+            { 
+            "id": 2,
+            "fullname": "Mme. DAGO",
+            "rolesId": 6,
+            "fonction": 1,
+            "entrepriseID": 1,
+            "email": "dago@entreprise.com",
+            "contact": "0708968475",
+            "created_at": null,
+            "update_at": null
+            },
+            { 
+                "id": 3,
+                "fullname": "Mme. KOUAME",
+                "rolesId": 6,
+                "fonction": 1,
+                "entrepriseID": 1,
+                "email": "kouame@entreprise.com",
+                "contact": "0708968489",
+                "created_at": null,
+                "update_at": null
+            },
+            { 
+                "id": 4,
+                "fullname": "Mr. KOUAKOU",
+                "rolesId": 6,
+                "fonction": 1,
+                "entrepriseID": 1,
+                "email": "kouakou@entreprise.com",
+                "contact": "0708968896",
+                "created_at": null,
+                "update_at": null
+            },
+            { 
+                "id": 5,
+                "fullname": "Mme. ADOU",
+                "rolesId": 6,
+                "fonction": 1,
+                "entrepriseID": 1,
+                "email": "adou@entreprise.com",
+                "contact": "0708968785",
+                "created_at": null,
+                "update_at": null
+            }
+      ],
+      "service_users": [
+                { 
+                    "id":1,
+                    "service_id":1,
+                    "user_id":2,
+                    "responsable":"true", 
+                     "created_at": null,
+                    "update_at": null
+                },
+                { 
+                    "id":2,
+                    "service_id":2,
+                    "user_id":3,
+                    "responsable":"true",
+                    "created_at": null,
+                    "update_at": null
+                },
+                { 
+                    "id":3,
+                    "service_id":3,
+                    "user_id":4,
+                    "responsable":"true",
+                    "created_at": null,
+                    "update_at": null
+                },
+                { 
+                    "id":4,
+                    "service_id":4,
+                    "user_id":5,
+                    "responsable":"true",
+                    "created_at": null,
+                    "update_at": null
+                }
+
+        ],
+   
+    "worflows": [
+      { 
+        "id": 1, 
+        "entrepriseID": 1, 
+        "created_at": null,
+        "update_at": null}
+    ],
+    "worflow_services": [
+        { 
+          "id": 1, 
+          "worflowsId": 1,
+          "servicesId": 1,
+          "description": 1,
+          "position": 1, 
+          "color_icon": "#24b47e",
+          "service_color": "#24b47e",
+          "user_created": 1,
+          "created_at": null,
+          "update_at": null
+        }
+      ]
+  }

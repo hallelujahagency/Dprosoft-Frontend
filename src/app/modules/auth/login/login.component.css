@@ -1,0 +1,650 @@
+body,
+html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 14px;
+    line-height: 1.15;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: transparent;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #f7f9fc;
+    color: #042040;
+}
+body {
+    min-height: 100vh;
+    scroll-behavior: smooth;
+    text-rendering: optimizeSpeed;
+    -webkit-text-size-adjust: 100%;
+}
+*,
+::after,
+::before {
+    box-sizing: border-box;
+}
+blockquote,
+body,
+dd,
+dl,
+figcaption,
+figure,
+h1,
+h2,
+h3,
+h4,
+li,
+ol[class],
+ul[class] {
+    margin: 0;
+}
+img {
+    max-width: 100%;
+    display: block;
+}
+svg:not(:root) {
+    overflow: visible;
+}
+a {
+    text-decoration: none;
+}
+table {
+    border-spacing: 0;
+}
+iframe {
+    border: 0;
+}
+.material-icons {
+    flex-shrink: 0;
+}
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+html {
+    box-sizing: border-box;
+  }
+  
+  *,
+  *:before,
+  *:after {
+    box-sizing: inherit;
+  }
+  
+  body {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+  }
+
+
+  .css-exn85p {
+    background-color: transparent;
+    display: flex;
+    text-decoration: none;
+    flex-direction: column;
+    margin: 0px;
+    padding: 40px 0px;
+    border: 0px;
+    position: relative;
+    min-height: 100vh;
+}
+
+.css-1j6y2bq {
+    background-color: transparent;
+    display: flex;
+    text-decoration: none;
+    flex-direction: column;
+    flex: 1 0 auto;
+    -webkit-box-flex: 1;
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+}
+
+.css-1dbwzjd {
+    background-color: transparent;
+    display: flex;
+    text-decoration: none;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    justify-content: center;
+    flex: 1 0 auto;
+    -webkit-box-flex: 1;
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+}
+
+.css-au6rka {
+    background-color: transparent;
+    display: flex;
+    text-decoration: none;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 0px 0px 48px;
+    padding: 0px;
+    border: 0px;
+    width: 100%;
+}
+.css-ab00y8 {
+    background-color: transparent;
+    display: flex;
+    text-decoration: none;
+    flex-direction: column;
+    flex-shrink: 0;
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    max-width: 150px;
+}
+.css-ta61uh {
+    background-color: transparent;
+    color: rgb(4, 32, 64);
+    display: block;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 28px;
+    border: 0px;
+    margin: 16px 0px 0px;
+    padding: 0px;
+}
+.css-18dspjg {
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    text-decoration: none;
+    flex-direction: column;
+    margin: 0px auto;
+    padding: 0px;
+    border: 1px solid rgb(240, 243, 247);
+    border-radius: 6px;
+    max-width: 520px;
+    min-width: 520px;
+    width: auto;
+    box-shadow: rgb(0 0 0 / 5%) 0px 1px 2px 0px;
+}
+.css-13sgzuk {
+    background-color: transparent;
+    display: flex;
+    text-decoration: none;
+    flex-direction: column;
+    margin: 32px;
+    padding: 0px;
+    border: 0px;
+}
+
+.css-v5k2wp {
+    background-color: transparent;
+    display: flex;
+    text-decoration: none;
+    flex-direction: column;
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+}
+.css-1tteurf {
+    background-color: transparent;
+    display: flex;
+    text-decoration: none;
+    flex-direction: column;
+    margin: 0px 0px 22px;
+    padding: 0px;
+    border: 0px;
+    width: 100%;
+}
+.css-bvofnf {
+    background-color: transparent;
+    display: flex;
+    text-decoration: none;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-flow: row nowrap;
+    margin: 0px 0px 4px;
+    padding: 0px;
+    border: 0px;
+}
+.css-961fps {
+    background-color: transparent;
+    color: rgb(4, 32, 64);
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 22px;
+    border: 0px;
+    margin: 0px;
+    padding: 0px;
+}
+
+.css-6s2p45 {
+    background-color: transparent;
+    display: flex;
+    text-decoration: none;
+    flex-direction: row;
+    -webkit-box-flex: 1;
+    flex-grow: 1;
+    margin: -1px;
+    padding: 0px;
+    border: 0px;
+    position: relative;
+}
+
+.css-63g1rg {
+    border: 0px;
+    cursor: inherit;
+    outline: none;
+    text-decoration: none;
+    background-color: transparent;
+    color: rgb(34, 57, 84);
+    font-size: 14px;
+    height: 100%;
+    min-width: 0px;
+    width: 100%;
+    flex-basis: 0px;
+    -webkit-box-flex: 1;
+    flex-grow: 1;
+    margin: 0px;
+    padding: 9px 12px;
+}
+.css-rr75h2 {
+    background-color: transparent;
+    display: flex;
+    text-decoration: none;
+    flex-direction: column;
+    margin: 0px 0px 12px;
+    padding: 0px;
+    border: 0px;
+    width: 100%;
+}
+.css-bvofnf {
+    background-color: transparent;
+    display: flex;
+    text-decoration: none;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-flow: row nowrap;
+    margin: 0px 0px 4px;
+    padding: 0px;
+    border: 0px;
+}
+.css-961fps {
+    background-color: transparent;
+    color: rgb(4, 32, 64);
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 22px;
+    border: 0px;
+    margin: 0px;
+    padding: 0px;
+}
+.css-1l0szmf {
+    background-color: rgb(255, 255, 255);
+    cursor: text;
+    display: flex;
+    text-decoration: none;
+    flex-direction: row;
+    margin: 0px;
+    padding: 1px;
+    border: 1px solid rgb(209, 218, 230);
+    border-radius: 6px;
+    height: 40px;
+    overflow: hidden;
+    width: 100%;
+    transition: border-color 200ms cubic-bezier(0.64, 0, 0.35, 1) 0s;
+}
+.css-6s2p45 {
+    background-color: transparent;
+    display: flex;
+    text-decoration: none;
+    flex-direction: row;
+    -webkit-box-flex: 1;
+    flex-grow: 1;
+    margin: -1px;
+    padding: 0px;
+    border: 0px;
+    position: relative;
+}
+.css-x5m2au {
+    border: 0px;
+    cursor: inherit;
+    outline: none;
+    text-decoration: none;
+    background-color: transparent;
+    color: rgb(34, 57, 84);
+    font-size: 14px;
+    height: 100%;
+    min-width: 0px;
+    width: 100%;
+    flex-basis: 0px;
+    -webkit-box-flex: 1;
+    flex-grow: 1;
+    font-family: Helvetica, Arial, sans-serif;
+    letter-spacing: 2px;
+    margin: 0px;
+    padding: 9px 0px 9px 12px;
+}
+.css-1nu0ye {
+    background-color: transparent;
+    display: flex;
+    text-decoration: none;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    justify-content: center;
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    width: 38px;
+}
+.css-lu3k8a {
+    background-color: transparent;
+    cursor: pointer;
+    display: flex;
+    text-decoration: none;
+    flex-direction: column;
+    flex-shrink: 0;
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    border-radius: 10px;
+}
+.css-1fuekrj {
+    background-color: transparent;
+    display: flex;
+    text-decoration: none;
+    flex-direction: column;
+    flex-shrink: 0;
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+}
+
+.css-16dv3w3 {
+    background-color: rgb(15, 111, 222);
+    cursor: pointer;
+    display: inline-flex;
+    opacity: 1;
+    text-decoration: none;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: row;
+    -webkit-box-pack: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin: 0px;
+    padding: 9px 12px;
+    border: 0px;
+    border-radius: 6px;
+    position: relative;
+    width: 100%;
+    box-shadow: rgb(0 0 0 / 5%) 0px 1px 2px 0px;
+    transition: opacity 200ms linear 0s, background-color 200ms linear 0s, box-shadow 200ms linear 0s;
+}
+
+.css-tgto1o {
+    background-color: transparent;
+    display: flex;
+    text-decoration: none;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 16px 0px 0px;
+    padding: 0px;
+    border: 0px;
+}
+.css-ocadgr {
+    background-color: transparent;
+    color: rgb(15, 111, 222);
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 22px;
+    opacity: 1;
+    text-decoration: none;
+    border: 0px;
+    margin: 0px;
+    padding: 0px;
+    transition: opacity 200ms linear 0s;
+}
+.css-1o4cmi0 {
+    background-color: transparent;
+    display: flex;
+    text-decoration: none;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: row;
+    margin: 22px 0px 0px;
+    padding: 0px;
+    border: 0px;
+}
+.css-glzbdn {
+    background-color: transparent;
+    display: flex;
+    text-decoration: none;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-flow: row nowrap;
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+}
+.css-7ubaj1 {
+    background-color: transparent;
+    color: rgb(15, 111, 222);
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 22px;
+    opacity: 1;
+    text-decoration: none;
+    border: 0px;
+    margin: 0px 12px 0px 0px;
+    padding: 0px;
+    transition: opacity 200ms linear 0s;
+}
+.css-1txcned {
+    background-color: transparent;
+    display: flex;
+    text-decoration: none;
+    flex-direction: column;
+    margin: 0px 12px 0px 0px;
+    padding: 0px;
+    border: 0px;
+}
+.css-18wohcc {
+    background-color: transparent;
+    display: flex;
+    text-decoration: none;
+    align-items: flex-start;
+    flex-flow: row nowrap;
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+}
+.css-18q9jd1 {
+    background-color: transparent;
+    color: rgb(54, 74, 97);
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+    border: 0px;
+    margin: 0px 4px 0px 0px;
+    padding: 0px;
+}
+.css-v5k2wp {
+    background-color: transparent;
+    display: flex;
+    text-decoration: none;
+    flex-direction: column;
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+}
+.css-1buegbn {
+    background-color: transparent;
+    cursor: pointer;
+    display: inline-flex;
+    opacity: 1;
+    text-decoration: none;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: row;
+    -webkit-box-pack: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    border-radius: 6px;
+    position: relative;
+    transition: opacity 200ms linear 0s, background-color 200ms linear 0s, box-shadow 200ms linear 0s;
+}
+.css-a0i1hu {
+    background-color: transparent;
+    color: rgb(15, 111, 222);
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 22px;
+    text-align: center;
+    border: 0px;
+    margin: 0px;
+    padding: 0px;
+    transition: color 200ms linear 0s;
+}
+.css-17jyhij {
+    background-color: transparent;
+    display: flex;
+    text-decoration: none;
+    flex-direction: column;
+    flex-shrink: 0;
+    margin: 0px 0px 0px 4px;
+    padding: 0px;
+    border: 0px;
+}
+.css-rkx23v {
+    background-color: transparent;
+    display: flex;
+    text-decoration: none;
+    flex-direction: column;
+    margin: 40px 0px 0px;
+    padding: 0px;
+    border: 0px;
+}
+.css-bxvxiy {
+    background-color: transparent;
+    display: flex;
+    text-decoration: none;
+    flex-direction: column;
+    margin: 0px auto 22px;
+    padding: 0px;
+    border: 0px;
+    max-width: 700px;
+}
+.css-1jlavsx {
+    background-color: transparent;
+    color: rgb(118, 134, 153);
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 17px;
+    text-align: center;
+    text-transform: uppercase;
+    border: 0px;
+    margin: 0px 0px 20px;
+    padding: 0px;
+}
+.css-r45hvj {
+    background-color: transparent;
+    display: flex;
+    text-decoration: none;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-flow: row wrap;
+    margin: 0px;
+    padding: 0px 20px;
+    border: 0px;
+}
+.css-x9zze4 {
+    background-color: transparent;
+    display: flex;
+    text-decoration: none;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 10px;
+    padding: 0px;
+    border: 0px;
+}
+.css-1fuekrj {
+    background-color: transparent;
+    display: flex;
+    text-decoration: none;
+    flex-direction: column;
+    flex-shrink: 0;
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+}
+
+.css-i1hkm8 {
+    background-color: transparent;
+    display: flex;
+    text-decoration: none;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: row;
+    margin: 0px 0px 22px;
+    padding: 0px;
+    border: 0px;
+}
+.css-affjex {
+    background-color: transparent;
+    display: flex;
+    text-decoration: none;
+    align-items: flex-start;
+    flex-direction: column;
+    margin: 0px 8px 0px 0px;
+    padding: 0px;
+    border: 0px;
+}
+.css-8q1hry {
+    background-color: transparent;
+    cursor: pointer;
+    display: flex;
+    text-decoration: none;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: row;
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    min-height: 22px;
+}
+.css-v5k2wp {
+    background-color: transparent;
+    display: flex;
+    text-decoration: none;
+    flex-direction: column;
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+}
+.css-1fuekrj {
+    background-color: transparent;
+    display: flex;
+    text-decoration: none;
+    flex-direction: column;
+    flex-shrink: 0;
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+}
+  

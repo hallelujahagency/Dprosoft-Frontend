@@ -1,0 +1,296 @@
+<div class="row">
+    <div class="col-sm-12">
+          <div class="iq-card">
+             <div class="iq-card-header d-flex justify-content-between">
+                <div class="iq-header-title">
+                   <h4 class="card-title">Liste des collaborateurs</h4>
+                </div>
+                <span class="table-add float-right mb-3 mr-2 mt-2">
+                    <button class="btn btn-sm btn-primary" (click)="openModal(addCollaborateurModal, '','add-collaborateur')" >
+                        <i class="ri-add-fill"></i> 
+                        <span class="pl-1">Ajouter un collaborateur</span>
+                    </button>
+                 </span>
+             </div>
+             <div class="iq-card-body">
+
+                <div class="row justify-content-between">
+                            <div class="col-sm-12 col-md-6">
+                                <div class="col-sm-6">
+                                    <div class="d-inline-block">
+                                        <div class="search-sm d-inline-block float-md-left mr-1 mb-1 align-top">
+                                            <input class="form-control" name="search" placeholder="Recherche" (keyup)="updateFilter($event)">
+                                        </div>
+                                    </div>
+                                </div> 
+                                
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <div class="col-sm-6">
+                                    <div class="d-inline-block">
+                                        <button class="btn btn-sm btn-primary" >
+                                         
+                                            <span class="pl-1">Telecharger En pdf</span>
+                                        </button>
+                                    </div>
+                                </div> 
+                                
+                            </div>
+                            <div class="col-12 mb-4 data-table-rows" id="table-list-services" #tableListServices>
+                                <ngx-datatable [rows]="usersCollaborateur"  [messages]="messagesData"  [columns]="columns" [columnMode]="ColumnMode.flex" [limit]="itemsPerPage" [headerHeight]="20"
+                                [footerHeight]="100" #table [sorts]="[{ prop: 'fullname', dir: 'asc' }]" >
+                
+                                                <ngx-datatable-column name="Fullname" [flexGrow]="3.4">
+                                                        <ng-template ngx-datatable-header-template let-value="value" let-allRowsSelected="allRowsSelected"
+                                                        let-selectFn="selectFn">
+                                                            Nom Prénom(s)
+                                                        </ng-template>
+                                                        <ng-template let-value="value" ngx-datatable-cell-template> 
+                                                            <a class="c-pointer" title="{{value}}">{{ value }}</a>
+                                                        </ng-template>
+                                                </ngx-datatable-column>
+
+                                                <ngx-datatable-column name="Fonction" [flexGrow]="1.2">
+                                                    <ng-template ngx-datatable-header-template let-value="value" let-allRowsSelected="allRowsSelected"
+                                                    let-selectFn="selectFn">
+                                                        Fonction
+                                                    </ng-template>
+                                                    <ng-template let-value="value" ngx-datatable-cell-template> 
+                                                        <a class="c-pointer" title="{{value}}">{{ value }}</a>
+                                                    </ng-template>
+                                                </ngx-datatable-column>
+                
+                                                <ngx-datatable-column name="Service" [flexGrow]="1.2">
+                                                    <ng-template ngx-datatable-header-template let-value="value" let-allRowsSelected="allRowsSelected"
+                                                    let-selectFn="selectFn">
+                                                            Service
+                                                    </ng-template>
+                                                    <ng-template let-value="value" ngx-datatable-cell-template> 
+                                                        <a class="c-pointer" title="{{getServiceName(value)}}">{{ getServiceName(value) }}</a>
+                                                    </ng-template>
+                                                </ngx-datatable-column>
+                
+                                                <ngx-datatable-column name="Email" [flexGrow]="1.2">
+                                                    <ng-template ngx-datatable-header-template let-value="value" let-allRowsSelected="allRowsSelected"
+                                                    let-selectFn="selectFn">
+                                                        Email
+                                                    </ng-template>
+                                                    <ng-template let-value="value" ngx-datatable-cell-template> 
+                                                        <a class="c-pointer" title="{{value}}">{{ value }}</a>
+                                                    </ng-template>
+                                                </ngx-datatable-column>
+
+                                                <ngx-datatable-column name="Contact" [flexGrow]="1.2">
+                                                    <ng-template ngx-datatable-header-template let-value="value" let-allRowsSelected="allRowsSelected"
+                                                    let-selectFn="selectFn">
+                                                        Contact
+                                                    </ng-template>
+                                                    <ng-template let-value="value" ngx-datatable-cell-template> 
+                                                        <a class="c-pointer" title="{{value}}">{{ value }}</a>
+                                                    </ng-template>
+                                                </ngx-datatable-column>
+                
+                                                <ngx-datatable-column name="Id"  [sortable]="false" [draggable]="false"
+                                                [resizeable]="false" [flexGrow]="1.9">
+                                                        <ng-template ngx-datatable-header-template let-value="value" let-allRowsSelected="allRowsSelected"
+                                                            let-selectFn="selectFn">
+                                                            Action
+                                                        </ng-template>
+                                                        <ng-template ngx-datatable-cell-template  let-row="row">
+
+                                                                <button type="button" class="btn btn-xs btn-info mb-2 mr-1" (click)="openModal(updateCollaborateurModal, row._id)">
+                                                                    <i class="ri-pencil-line"></i>
+                                                                </button>
+                                                                
+                                                                <button  type="button" class="btn btn-xs btn-danger mb-2" (click)="DeleteItem(row._id)">
+                                                                    <i class="ri-delete-bin-line"></i>
+                                                                </button>
+                                                        </ng-template>
+                                                </ngx-datatable-column>
+                
+                
+                                                <ngx-datatable-footer *ngIf="true">
+                                                    <ng-template ngx-datatable-footer-template let-rowCount="rowCount" let-pageSize="pageSize"
+                                                        let-selectedCount="selectedCount" let-curPage="curPage" let-offset="offset" let-limit="limit">
+                                                            <div class="w-100 d-flex justify-content-center">
+                                                                <pagination [totalItems]="rowCount" [itemsPerPage]="pageSize" [maxSize]="5"
+                                                                [customPreviousTemplate]="prevTemplate"  (pageChanged)="table.onFooterPage($event)"
+                                                                    [customNextTemplate]="nextTemplate">
+                                                                </pagination>
+                                                            </div>
+                                                    </ng-template>
+                                                </ngx-datatable-footer>
+                  
+                                </ngx-datatable>
+                            </div>
+                </div>
+
+                <ng-template #nextTemplate let-disabled="disabled" let-currentPage="currentPage">
+                    <ng-container *ngIf="!disabled">
+                      ➡️
+                    </ng-container>
+                    <ng-container *ngIf="disabled">
+                      ⛔
+                    </ng-container>
+                  </ng-template>
+                   
+                  <ng-template #prevTemplate let-disabled="disabled" let-currentPage="currentPage">
+                    <ng-container *ngIf="!disabled">
+                      ⬅️
+                    </ng-container>
+                    <ng-container *ngIf="disabled">
+                      ⛔
+                    </ng-container>
+                  </ng-template>
+
+                  <ng-template #prevTemplate let-disabled="disabled" let-currentPage="currentPage">
+                    <ng-container *ngIf="!disabled">
+                      ⬅️
+                    </ng-container>
+                    <ng-container *ngIf="disabled">
+                      ⛔
+                    </ng-container>
+                  </ng-template>
+
+             </div>
+          </div>
+          
+    </div>
+ </div>
+
+ <ng-template #addCollaborateurModal>
+			
+    <div class="modal-header">				
+        <h2>Ajouter un collaborateur</h2>
+        <button type="button" class="close pull-right modal__close" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        
+    </div>
+      <div class="modal-body">
+        <form [formGroup]="collaborateurAddForm" (ngSubmit)="onSubmitAddCollaborateur()">
+           
+            <div class="form-group">
+               <label for="fullname">Nom Prénom(s)</label>
+               <input type="text"class="form-control" name="fullname" 
+                                formControlName="fullname" id="fullname"
+                                 placeholder="Nom Prénom(s) du collaborateur">
+            
+            </div>
+
+            <div class="form-group">
+                <label for="email">Adresse Email</label>
+                <input type="email"class="form-control" name="email" 
+                                 formControlName="email" id="email"
+                                  placeholder="Adresse Email du collaborateur">
+             
+             </div>
+
+             <div class="form-group">
+                <label for="contact">Contact</label>
+                <input type="text"class="form-control" name="contact" 
+                                 formControlName="contact" id="contact"
+                                  placeholder="Contact du collaborateur">
+             
+             </div>
+
+             <div class="form-group">
+                <label for="fonction">Fonction</label>
+                <input type="text"class="form-control" name="fonction" 
+                                 formControlName="fonction" id="fonction"
+                                  placeholder="Fonction du collaborateur">
+             
+             </div>
+
+             <div class="form-group">
+                <label for="service">Service</label>
+                <select class="form-control form-control-sm mb-3" name="responsable"
+                                                     formControlName="service">
+
+                    <option *ngFor="let item of servicesEntreprises" [ngValue]="item._id">
+                        {{ item.name }}
+                      </option>
+                    
+                 </select>
+
+             </div>
+
+             <div class="form-group">
+                <label for="password">Mot de passe</label>
+                <input type="password"class="form-control" name="password" 
+                                 formControlName="password" id="password"
+                                  placeholder="Mot de passe du collaborateur">
+             
+             </div>
+           
+            <button type="submit" class="btn btn-primary mr-3">Ajouter</button>
+           
+         </form>
+   
+      </div>
+</ng-template>
+
+<ng-template #updateCollaborateurModal>
+			
+    <div class="modal-header">				
+        <h2>Modifier un collaborateur</h2>
+        <button type="button" class="close pull-right modal__close" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        
+    </div>
+      <div class="modal-body">
+        <form [formGroup]="collaborateurUpdateForm" (ngSubmit)="onSubmitUpdateCollaborateur()" *ngIf="userSelected">
+           
+            <div class="form-group">
+               <label for="fullname">Nom Prénom(s)</label>
+               <input type="text"class="form-control" name="fullname" 
+                                formControlName="fullname" id="fullname"
+                                 placeholder="Nom Prénom(s) du collaborateur" [(ngModel)]="userSelected.fullname">
+            
+            </div>
+
+            <div class="form-group">
+                <label for="email">Adresse Email</label>
+                <input type="email"class="form-control" name="email" 
+                                 formControlName="email" id="email"
+                                  placeholder="Adresse Email du collaborateur" [(ngModel)]="userSelected.email">
+             
+             </div>
+
+             <div class="form-group">
+                <label for="contact">Contact</label>
+                <input type="text"class="form-control" name="contact" 
+                                 formControlName="contact" id="contact"
+                                  placeholder="Contact du collaborateur" [(ngModel)]="userSelected.contact">
+             
+             </div>
+
+             <div class="form-group">
+                <label for="fonction">Fonction</label>
+                <input type="text"class="form-control" name="fonction" 
+                                 formControlName="fonction" id="fonction"
+                                  placeholder="Fonction du collaborateur" [(ngModel)]="userSelected.fonction">
+             
+             </div>
+
+             <div class="form-group">
+                <label for="service">Service</label>
+                <select class="form-control form-control-sm mb-3" name="service"
+                                                     formControlName="service" [(ngModel)]="serviceId" >
+
+                    <option *ngFor="let item of servicesEntreprises" [ngValue]="item._id">
+                        {{ item.name }}
+                      </option>
+                    
+                 </select>
+
+             </div>
+
+           
+            <button type="submit" class="btn btn-primary mr-3">Modifier</button>
+           
+         </form>
+   
+      </div>
+</ng-template>

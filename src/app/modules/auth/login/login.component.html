@@ -1,0 +1,134 @@
+<div class="css-exn85p" style="">
+    <div class="css-1j6y2bq">
+        <div class="css-1dbwzjd">
+            <div  class="css-au6rka">
+                <img alt="Dprosoft logo" src="assets/images/logo-full.svg" width="100%" height="auto"  class="css-ab00y8" style="object-fit: fill;" />
+                <h4 class="css-ta61uh">Bienvenue sur Dprosoft !</h4>
+            </div>
+            <div class="css-18dspjg">
+                <div class="css-13sgzuk">
+                    <div class="css-v5k2wp">
+                        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                            <div class="css-1tteurf">
+                                <div class="css-bvofnf">
+                                    <label for="email" class="css-961fps">Adresse e-mail ou matricule</label>
+                                    <div *ngIf="isFormSubmitted && userControl.email.errors" class="invalid-feedback">
+                                        <div *ngIf="userControl.email.errors.required">email ou matricule obligatoire </div>
+                                    </div>
+                                </div>
+                                <div class="css-1l0szmf">
+                                    
+                                    <div class="css-6s2p45">
+                                        <input
+                                            autocapitalize="none"
+                                            autocomplete="email"
+                                            autocorrect="off"
+                                            type="text"
+                                            id="email"
+                                            placeholder="Saisissez votre adresse e-mail"
+                                            class="css-63g1rg"
+                                            value=""
+                                            formControlName="email" 
+                                            [ngClass]="{ 'is-invalid': isFormSubmitted && userControl.email.errors }"
+                                        />
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="css-rr75h2">
+                                <div class="css-bvofnf">
+                                    <label for="password" class="css-961fps">Mot de passe</label>
+                                    <div *ngIf="isFormSubmitted && userControl.password.errors" class="invalid-feedback">
+                                        <div *ngIf="userControl.password.errors.required">Mot de passe est obligatoire </div>
+                                        <div *ngIf="userControl.password.errors.minlength || userControl.password.errors.maxlength"> Le mot de passe doit contenir au moins 6 caracteres </div>
+                                    </div>
+                                </div>
+                                <div class="css-1l0szmf">
+                                    
+                                    <div class="css-6s2p45">
+                                        <input autocomplete="current-password" 
+                                                [type]="fieldType"   
+                                                id="password" 
+                                                placeholder="••••••••"
+                                                class="css-x5m2au"
+                                                value="" formControlName="password" 
+                                                [ngClass]="{ 'is-invalid': isFormSubmitted && userControl.password.errors }"/>
+                                                
+                                        <div class="css-1nu0ye">
+                                            <button type="button" class="css-lu3k8a css-0" (click)="toggleFieldTextTypeLogin()">
+                                                <div aria-hidden="true" class="css-1fuekrj" *ngIf="!fieldTextType">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" width="20" fill="#96A3B3">
+                                                        <path d="M0 0h24v24H0zm0 0h24v24H0zm0 0h24v24H0zm0 0h24v24H0z" fill="none"></path>
+                                                        <path
+                                                            d="M12 7c2.76 0 5 2.24 5 5 0 .65-.13 1.26-.36 1.83l2.92 2.92c1.51-1.26 2.7-2.89 3.43-4.75-1.73-4.39-6-7.5-11-7.5-1.4 0-2.74.25-3.98.7l2.16 2.16C10.74 7.13 11.35 7 12 7zM2 4.27l2.28 2.28.46.46A11.804 11.804 0 001 12c1.73 4.39 6 7.5 11 7.5 1.55 0 3.03-.3 4.38-.84l.42.42L19.73 22 21 20.73 3.27 3 2 4.27zM7.53 9.8l1.55 1.55c-.05.21-.08.43-.08.65 0 1.66 1.34 3 3 3 .22 0 .44-.03.65-.08l1.55 1.55c-.67.33-1.41.53-2.2.53-2.76 0-5-2.24-5-5 0-.79.2-1.53.53-2.2zm4.31-.78l3.15 3.15.02-.16c0-1.66-1.34-3-3-3l-.17.01z"
+                                                        ></path>
+                                                    </svg>
+                                                </div>
+                                                <div aria-hidden="true" class="css-1fuekrj" *ngIf="fieldTextType">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" width="20" fill="#96A3B3">
+                                                        <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"></path>
+                                                    </svg>                                                    
+                                                </div>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="css-i1hkm8">
+                                <div class="css-affjex">
+                                    <label for="MIDNIGHT_4" class="css-8q1hry" style="user-select: none;">
+                                        <div class="css-1sffe0f">
+                                            <input type="checkbox" role="checkbox" id="MIDNIGHT_4" aria-checked="false" class="css-1azuuzy" />
+                                            <span aria-hidden="true" class="css-18c99lw"></span>
+                                        </div>
+                                        <span class="css-ehnhtv ml-2">Rester connecté(e)</span>
+                                    </label>
+                                </div>
+                                
+                                
+                            </div>
+                            <button type="submit" class="css-16dv3w3 css-0">
+                                <span class="css-1efejnu text-white">Se connecter</span>
+                            </button>
+                        </form>
+                    </div>
+                    <div class="css-tgto1o">
+                        <a class="css-ocadgr css-0" href="/login/forgot-password">Mot de passe oublié ?</a></div>
+                </div>
+            </div>
+            <div class="css-1o4cmi0">
+                <div class="css-glzbdn">
+                    <a href="#" rel="noopener noreferrer" target="_blank" class="css-7ubaj1 css-0">Politique de confidentialité</a>
+                    <div class="css-1txcned">·</div>
+                    <div class="css-18wohcc">
+                        <span class="css-18q9jd1">Langue :</span>
+                        <div class="css-v5k2wp">
+                            <button type="button" class="css-1buegbn css-0" aria-haspopup="menu" aria-expanded="false" aria-owns="MIDNIGHT_5">
+                                <span class="css-a0i1hu">Français</span>
+                                <div aria-hidden="true" class="css-17jyhij">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#0F6FDE" style="transition: fill 0.2s linear 0s;">
+                                        <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"></path>
+                                    </svg>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="css-rkx23v">
+        <div data-testid="payfit-footer" class="css-bxvxiy">
+            <span class="css-1jlavsx">elles nous font confiance.</span>
+            <div class="css-r45hvj">
+                <div class="css-x9zze4"><img alt="ESCAET" src="assets/images/logo-partner/logo-escaet-hd-900x332-fd-transparent.png" width="85" height="auto" class="css-1fuekrj" style="object-fit: fill;" /></div>
+                <div class="css-x9zze4"><img alt="marseille-innovation" src="assets/images/logo-partner/logo-marseille-innovation-1.png" width="85" height="auto" class="css-1fuekrj" style="object-fit: fill;" /></div>
+                <div class="css-x9zze4"><img alt="france-active" src="assets/images/logo-partner/logo-france-active-bea20964.png" width="85" height="auto" class="css-1fuekrj" style="object-fit: fill;" /></div>
+                <div class="css-x9zze4"><img alt="region-sud-provence-alpes" src="assets/images/logo-partner/region-sud-provence-alpes-cc3b4te-dazur-dcb9ab02.png" width="85" height="auto" class="css-1fuekrj" style="object-fit: fill;" /></div>
+                <div class="css-x9zze4"><img alt="France-Tourisme-Lab" src="assets/images/logo-partner/Logo-France-Tourisme-Lab-fd8c32f3.png" width="85" height="auto" class="css-1fuekrj" style="object-fit: fill;" /></div>
+                <div class="css-x9zze4"><img alt="provence-tourisme" src="assets/images/logo-partner/logo-provence-tourisme-200x-3366765d.png" width="85" height="auto" class="css-1fuekrj" style="object-fit: fill;" /></div>
+            
+            </div>
+        </div>
+    </div>
+</div>

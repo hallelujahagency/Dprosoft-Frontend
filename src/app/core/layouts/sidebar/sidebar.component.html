@@ -1,0 +1,65 @@
+<!-- Sidebar  -->
+<div class="iq-sidebar">
+    <div class="iq-sidebar-logo d-flex justify-content-between">
+       <a [routerLink]="'/'">
+       <img src="assets/images/logo1.svg" class="img-fluid" alt="">
+       <span>Dprosoft</span>
+       </a>
+       <div class="iq-menu-bt align-self-center">
+          <div class="wrapper-menu">
+             <div class="line-menu half start"></div>
+             <div class="line-menu"></div>
+             <div class="line-menu half end"></div>
+          </div>
+       </div>
+    </div>
+    <div id="sidebar-scrollbar">
+       <nav class="iq-sidebar-menu">
+          <ul id="iq-sidebar-toggle" class="iq-menu">
+
+
+             <li  *ngFor="let item of menuItems"
+                  [ngClass]="{'active': (selectedParentMenu === item.id && viewingParentMenu === '') || viewingParentMenu === item.id}">
+
+                  <a *ngIf="item.newWindow" [href]="item.to" rel="noopener noreferrer" target="_blank" class="iq-waves-effect">
+                     <i [ngClass]="item.icon"></i>
+                     <span>{{item.label}}</span>
+                  </a>
+
+                  <a *ngIf="!item.newWindow && (!item.subs || (item.subs &&  item.subs.length===0))"
+                  (click)="openMenu(item.id); false" [routerLink]="item.to" class="iq-waves-effect">
+                        <i [ngClass]="item.icon"></i> 
+                        <span>{{item.label}}</span>
+               </a>
+
+
+
+                  <a *ngIf="!item.newWindow && item.subs &&  item.subs.length>0"
+                        (click)="openMenu(item.id); false" [href]="'#'+item.id" class="iq-waves-effect" data-toggle="collapse" aria-expanded="false">
+                        <i [ngClass]="item.icon"></i> 
+                        <span>{{item.label}}</span>
+                        <i class="ri-arrow-right-s-line iq-arrow-right"></i>
+                     </a>
+
+                     <ul *ngIf="!item.newWindow && item.subs &&  item.subs.length>0"
+                         [id]="item.id" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
+
+                        <li  *ngFor="let sub of item.subs"
+                              [routerLinkActive]="'active'">
+
+                           <a *ngIf="!sub.newWindow && (!sub.subs || sub.subs.length<=0)" [routerLink]="[sub.to]" >{{sub.label}}</a>
+
+                           
+                        </li>
+                        
+                     </ul>
+
+
+               </li>
+
+          </ul>
+       </nav>
+       <div class="p-3"></div>
+    </div>
+ </div>
+ <!-- Sidebar  -->

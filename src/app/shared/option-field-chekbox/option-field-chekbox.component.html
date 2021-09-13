@@ -1,0 +1,22 @@
+
+<div *ngIf="field && formCard" [formGroup]="formCard">
+    
+
+            <div class="form-group">
+                <div class="form-check">
+                   <input class="form-check-input" [formControlName]="field.controlName"
+                          [type]="field.controlType" [id]="field.controlName" 
+                          [value]="field.currentValue ? field.currentValue  : ''" 
+                          (change)="onPrimaryToggled($event)">
+
+                   <label class="form-check-label" [attr.for]="field.controlName" *ngIf="field.controlLabel">{{field.controlLabel}}</label>
+                </div>
+             </div>
+
+
+  <div class="invalid-feedback" *ngIf="!isValid && (isDirty || isTouched)">
+                  <div *ngIf="isRequired">Champs Obligatoire</div>
+  </div>
+
+            
+</div>

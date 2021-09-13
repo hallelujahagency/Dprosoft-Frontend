@@ -1,0 +1,169 @@
+<div class="row">
+
+    <div class="col-sm-12 text-right">
+        <button type="button" class="btn btn-primary" (click)="openModal(addServiceWorkflowModal,'empty', 'create')">Ajouter un service au workflow</button>
+    </div>
+</div>
+
+<div class="worflow">
+    
+
+    <ng-container *ngFor="let item of worflowServicesOrdreDeMission | orderBy :'position' ;let i=index;" >
+
+        <div class="worflow__event animated fadeInUp "  style="cursor: pointer;" (click)="openModal(alerteServiceWorkflowModal, item._id)"
+                    [ngClass]="{'delay-2s worflow__event--type1' : i == 0, 'delay-1s worflow__event--type2' : i != 0, 'delay-1s worflow__event--type3' : i == worflowServicesOrdreDeMission.length }">
+                <div class="worflow__event__icon " [style.background]="item.color_icon" >
+                </div>
+                <div class="worflow__event__date" [style.background]="item.color_icon">
+                {{ item.name}}
+                </div>
+                <div class="worflow__event__content ">
+                    <div class="worflow__event__title">
+                    {{  getServiceResponsable(item.responsable) }}
+                    </div>
+                    <div class="worflow__event__description">
+                        <p>{{  item.description }} </p>
+                    </div>
+                </div>
+        </div>
+
+    </ng-container>
+
+   
+  
+  </div>
+
+  <ng-template #addServiceWorkflowModal>
+			
+    <div class="modal-header">				
+        <h2>Ajouter un service au worflow</h2>
+        <button type="button" class="close pull-right modal__close" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        
+    </div>
+      <div class="modal-body">
+        <form [formGroup]="worflowForm" (ngSubmit)="onSubmitAddWorkflow()">
+           
+            <div class="form-group">
+               <label for="service">Service</label>
+               <select class="form-control form-control-sm mb-3" name="service" formControlName="service">
+
+                <option *ngFor="let service of servicesEntreprises" [ngValue]="service._id">
+                    {{ service.name }}
+                  </option>
+                
+             </select>
+            </div>
+
+             <div class="form-group">
+                <label for="description">Description</label>
+                <textarea class="form-control" id="description" name="description" formControlName="description" rows="1"></textarea>
+             </div>
+         
+            <div class="form-group">
+               <label for="exampleInputcolor">Couleur </label>
+               <input type="color" name="color_set" class="form-control" formControlName="color_set" id="exampleInputcolor" value="#0084ff">
+            </div>
+      
+            <button type="submit" class="btn btn-primary mr-3">Ajouter</button>
+           
+         </form>
+   
+      </div>
+</ng-template>
+
+
+<ng-template #alerteServiceWorkflowModal>
+    <div class="modal-header">				
+        
+        <button type="button" class="close pull-right modal__close" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        
+    </div>
+      <div class="modal-body">
+        <button type="button" class="btn btn-primary mr-3" (click)="openModal(ListOfServiceWorkflowModal)">Changer de position</button>
+        <button type="button" class="btn btn-secondary mr-3" (click)="openModal(updateServiceWorkflowModal)" >Modifier</button>
+        <button type="button" class="btn btn-danger mr-3" (click)="DeleteItem()">Supprimer</button>
+    </div>
+
+</ng-template>
+
+<ng-template #ListOfServiceWorkflowModal>
+    <div class="modal-header">				
+        
+        <button type="button" class="close pull-right modal__close" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        
+    </div>
+      <div class="modal-body">
+
+        <div class="list-container">
+                        <div
+                                cdkDropList
+                                [cdkDropListData]="worflowServicesOrdreDeMission"
+                                class="item-service-list"
+                                (cdkDropListDropped)="dropped($event)">
+
+                                <div
+                                class="item-service-box"
+                                *ngFor="let item of worflowServicesOrdreDeMission"
+                                [cdkDragData]="item.name"
+                                cdkDrag>{{ item.name}}
+                            </div>
+            </div>
+
+            <button type="button" class="btn btn-primary mt-5" (click)="savePosition()">Sauvegarder</button>
+        </div>
+       
+        
+      
+    </div>
+
+</ng-template>
+
+<ng-template #updateServiceWorkflowModal>
+			
+    <div class="modal-header">				
+        <h2>Modifier un service au worflow</h2>
+        <button type="button" class="close pull-right modal__close" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        
+    </div>
+      <div class="modal-body" *ngIf="worflow_item_update">
+        <form [formGroup]="worflowForm" (ngSubmit)="UpdateClickItem()">
+           
+            <div class="form-group">
+               <label for="service_id">Service</label>
+               <select class="form-control form-control-sm mb-3" name="service" id="service"
+                      formControlName="service" [(ngModel)]="worflow_item_update.service" required>
+
+                      <option *ngFor="let service of servicesEntreprises" [ngValue]="service._id">
+                        {{ service.name }}
+                      </option>
+                
+             </select>
+            </div>
+
+             <div class="form-group">
+                <label for="description">Description</label>
+                <textarea class="form-control" id="description" name="description" formControlName="description"
+                                               rows="1" [(ngModel)]="worflow_item_update.description" required></textarea>
+             </div>
+         
+            <div class="form-group">
+               <label for="exampleInputcolor">Couleur </label>
+               <input type="color" name="color_set" class="form-control" formControlName="color_set" 
+                                                    id="exampleInputcolor" value="#0084ff" [(ngModel)]="worflow_item_update.color_icon" required>
+            </div>
+      
+            <button type="submit" class="btn btn-primary mr-3">Modifier</button>
+           
+         </form>
+   
+      </div>
+</ng-template>
+

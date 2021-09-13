@@ -1,0 +1,270 @@
+<div class="row">
+    <div class="col-sm-12">
+          <div class="iq-card">
+             <div class="iq-card-header d-flex justify-content-between">
+                <div class="iq-header-title">
+                   <h4 class="card-title">Liste des demandes de mission</h4>
+                </div>
+                
+             </div>
+             <div class="iq-card-body">
+
+                <div class="row justify-content-between">
+                            <div class="col-sm-12 col-md-6">
+                              <div class="col-sm-6">
+                                 <div class="d-inline-block">
+                                     <div class="search-sm d-inline-block float-md-left mr-1 mb-1 align-top">
+                                         <input class="form-control" name="search" placeholder="Recherche" (keyup)="updateFilter($event)">
+                                     </div>
+                                 </div>
+                             </div>  
+                            </div>
+                            <div class="col-12 mb-4 data-table-rows">
+                                <ngx-datatable [rows]="listOfMissions"  [messages]="messagesData"  [columns]="columns" [columnMode]="ColumnMode.flex" [limit]="itemsPerPage" [headerHeight]="20"
+                                [footerHeight]="100" #table [sorts]="[{ prop: 'title', dir: 'asc' }]" >
+                
+                                                <ngx-datatable-column name="Title" [flexGrow]="2.1">
+                                                        <ng-template ngx-datatable-header-template let-value="value" let-allRowsSelected="allRowsSelected"
+                                                        let-selectFn="selectFn">
+                                                            Titre de la mission
+                                                        </ng-template>
+                                                        <ng-template ngx-datatable-cell-template let-row="row"> 
+                                                            <a class="c-pointer" [attr.title]="row.objet" [innerText]="row.objet"></a>
+                                                        </ng-template>
+                                                </ngx-datatable-column>
+
+                                                <ngx-datatable-column name="Title" [flexGrow]="2.1">
+                                                    <ng-template ngx-datatable-header-template let-value="value" let-allRowsSelected="allRowsSelected"
+                                                    let-selectFn="selectFn">
+                                                        Nom du collaborateur
+                                                    </ng-template>
+                                                    <ng-template ngx-datatable-cell-template let-row="row"> 
+                                                        <a class="c-pointer" [attr.title]="row.collaborateurData[0].fullname" [innerText]="row.collaborateurData[0].fullname"></a>
+                                                    </ng-template>
+                                            </ngx-datatable-column>
+
+                                            <ngx-datatable-column name="Statut" [flexGrow]="1.2">
+                                                <ng-template ngx-datatable-header-template let-value="value" let-allRowsSelected="allRowsSelected"
+                                                let-selectFn="selectFn">
+                                                    Statut
+                                                </ng-template>
+                                                <ng-template ngx-datatable-cell-template let-row="row"> 
+                                                    <a class="c-pointer" [attr.title]="row.statut" [innerText]="row.statut"></a>
+                                                </ng-template>
+                                            </ngx-datatable-column>
+                
+                                               
+                
+                                                <ngx-datatable-column name="Id"  [sortable]="false" [draggable]="false"
+                                                [resizeable]="false" [flexGrow]="2.1">
+                                                        <ng-template ngx-datatable-header-template let-value="value" let-allRowsSelected="allRowsSelected"
+                                                            let-selectFn="selectFn">
+                                                            Action
+                                                        </ng-template>
+                                                        <ng-template ngx-datatable-cell-template  let-row="row">
+
+                                                          <ng-container *ngIf="row.statut === 'En cours de validation'">
+
+                                                                  <button type="button" class="btn btn-xs btn-primary mr-2" (click)="validateMission(row._id)">
+                                                                            Valider
+                                                                  </button>
+
+                                                                 <!--  <button type="button" class="btn btn-xs btn-danger mr-2" (click)="openModal(notMissionBesoinModal, row._id)">
+                                                                           Refuser
+                                                                  </button> -->
+
+                                                                  <button type="button" class="btn btn-xs btn-info mr-2" (click)="openModal(DetailsMissionModal, row._id,'info')">
+                                                                     Info
+                                                                </button>
+
+                                                          </ng-container>
+
+
+                                                          <ng-container *ngIf="row.statut === 'Validé'">
+
+                                                                    <button type="button" class="btn btn-xs btn-info mr-2" (click)="openModal(DetailsMissionModal, row._id,'info')">
+                                                                        <i class="ri-more-line"></i> Info
+                                                                    </button>
+
+                                                          </ng-container>
+
+
+                                                              
+                                                                
+                                                               
+                                                        </ng-template>
+                                                </ngx-datatable-column>
+                
+                
+                                                <ngx-datatable-footer *ngIf="true">
+                                                    <ng-template ngx-datatable-footer-template let-rowCount="rowCount" let-pageSize="pageSize"
+                                                        let-selectedCount="selectedCount" let-curPage="curPage" let-offset="offset" let-limit="limit">
+                                                            <div class="w-100 d-flex justify-content-center">
+                                                                <pagination [totalItems]="rowCount" [itemsPerPage]="pageSize" [maxSize]="5"
+                                                                [customPreviousTemplate]="prevTemplate"  (pageChanged)="table.onFooterPage($event)"
+                                                                    [customNextTemplate]="nextTemplate">
+                                                                </pagination>
+                                                            </div>
+                                                    </ng-template>
+                                                </ngx-datatable-footer>
+                  
+                                </ngx-datatable>
+                            </div>
+                </div>
+
+                <ng-template #nextTemplate let-disabled="disabled" let-currentPage="currentPage">
+                    <ng-container *ngIf="!disabled">
+                      ➡️
+                    </ng-container>
+                    <ng-container *ngIf="disabled">
+                      ⛔
+                    </ng-container>
+                </ng-template>
+                   
+                  <ng-template #prevTemplate let-disabled="disabled" let-currentPage="currentPage">
+                    <ng-container *ngIf="!disabled">
+                      ⬅️
+                    </ng-container>
+                    <ng-container *ngIf="disabled">
+                      ⛔
+                    </ng-container>
+                  </ng-template>
+
+                  <ng-template #prevTemplate let-disabled="disabled" let-currentPage="currentPage">
+                    <ng-container *ngIf="!disabled">
+                      ⬅️
+                    </ng-container>
+                    <ng-container *ngIf="disabled">
+                      ⛔
+                    </ng-container>
+                  </ng-template>
+
+             </div>
+          </div>
+          
+    </div>
+ </div>
+
+
+
+<ng-template  #TraitementMissionModal> 
+
+        <div class="modal-body"> 
+            <div class="iq-card">
+                <div class="iq-card-header d-flex justify-content-between">
+                   <div class="iq-header-title">
+                      <h4 class="card-title">Traitement du besoin</h4>
+                   </div>
+                </div>
+                <div class="iq-card-body">
+                    <form [formGroup]="formRequestMission" (ngSubmit)="onSubmit()">
+               
+                        <div class="form-group mapgoogle-autocomplete-form-custom">
+                           <label for="exampleInputPlaceholder">Lieu de depart</label>
+        
+                          <input type="text" autocomplete="off" (keyup)="findLocation($event)"  class="form-control mapgoogle-autocomplete-custom"
+                                formControlName="depart" [ngClass]="{ 'is-invalid': isFormSubmitted && formRequestMissionControl.depart.errors }"
+                                 id="exampleInputPlaceholder" placeholder="Le lieu de depart">
+
+                                 <input type="hidden" class="lat-value" name="lat" value="">
+                                 <input type="hidden" class="lng-value" name="lng" value="" >
+                                 <input type="hidden" class="addres-value" name="address" value="" >
+
+
+                              <div id="custom-output-autocomplete" class="pac-container" style="display:none;"></div>
+                              <div *ngIf="isFormSubmitted && formRequestMissionControl.depart.errors" class="invalid-feedback">
+                                <div *ngIf="formRequestMissionControl.depart.errors.required">Le lieu de depart  est obligatoire </div>
+                            </div>
+                        </div>
+        
+                        <button type="submit" class="btn btn-primary">Valider</button>
+        
+                        </form>
+                </div>
+             </div>
+        </div>
+
+</ng-template>
+
+
+<ng-template  #notMissionBesoinModal> 
+
+  <div class="modal-body"> 
+      <div class="iq-card">
+          <div class="iq-card-header d-flex justify-content-between">
+             <div class="iq-header-title">
+                <h4 class="card-title">Justification</h4>
+             </div>
+          </div>
+          <div class="iq-card-body">
+            <form [formGroup]="formRequestMissionRefused" (ngSubmit)="refusedMission()">
+               
+                <div class="form-group">
+                   <label for="exampleInputPlaceholder">Justification</label>
+
+                   <textarea class="form-control" name="justification" formControlName="justification" [ngClass]="{ 'is-invalid': isFormJustif && formJustifControl.justification.errors }" id="exampleInputPlaceholder" rows="3"></textarea>
+                   <div *ngIf="isFormJustif && formJustifControl.justification.errors" class="invalid-feedback">
+                      <div *ngIf="formJustifControl.justification.errors.required">La justification est obligatoire </div>
+                  </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Envoyer</button>
+
+                </form>
+          </div>
+       </div>
+  </div>
+
+</ng-template>
+
+<ng-template  #DetailsMissionModal> 
+
+    <div class="modal-body"> 
+        <div class="iq-card">
+            <div class="iq-card-header d-flex justify-content-between">
+               <div class="iq-header-title">
+                  <h4 class="card-title">Plus d'informations</h4>
+               </div>
+            </div>
+            <div class="iq-card-body">
+               <ul class="iq-timeline" *ngIf="itemSelected">
+                  <li>
+                     <div class="timeline-dots"></div>
+                     <h6 class="float-left mb-1">Mission</h6>
+                     <div class="d-inline-block w-100">
+                        <p [innerText]="itemSelected.objet"></p>
+                     </div>
+                  </li>
+                  <li>
+                     <div class="timeline-dots border-success"></div>
+                     <h6 class="float-left mb-1">Période</h6>
+                     <div class="d-inline-block w-100">
+                        <p [innerText]="'Du '+ itemSelected.date_debut +' Au '+ itemSelected.date_fin"></p>
+                 
+                     </div>
+                  </li>
+                  <li>
+                     <div class="timeline-dots border-info"></div>
+                     <h6 class="float-left mb-1">Lieu de la mission</h6>
+                     <div class="d-inline-block w-100">
+                        <p [innerText]="itemSelected.destination"></p>
+                     </div>
+                  </li>
+
+                  <li>
+                      <div class="timeline-dots border-info"></div>
+                      <h6 class="float-left mb-1">Prévision</h6>
+                      <div class="d-inline-block w-100">
+                          <p [innerText]="'Hebergement '+ requestSelectedConfig.hebergement + ' €' "></p>
+                          <p [innerText]="'Restauration '+ requestSelectedConfig.restauration + ' €' "></p>
+                          <p [innerText]="'Transport '+ requestSelectedConfig.transport + ' €' "></p>
+                          <p [innerText]="'Frais de Mission '+ requestSelectedConfig.fraisMission + ' €' "></p>
+                          
+                      </div>
+                 </li>
+               </ul>
+            </div>
+        </div>
+    </div>
+
+</ng-template>
