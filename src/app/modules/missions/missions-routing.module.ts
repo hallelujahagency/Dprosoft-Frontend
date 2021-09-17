@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ListMissionsComponent } from './list-missions/list-missions.component';
+import { NoteDeFraisComponent } from './note-de-frais/note-de-frais.component';
 import { OrdresDeMissionComponent } from './ordres-de-mission/ordres-de-mission.component';
 import { RequestsMissionComponent } from './requests-mission/requests-mission.component';
 import { ValidateOrdreMissionComponent } from "./validate-ordre-de-mission/validate-ordre-mission.component";
@@ -29,6 +30,11 @@ const routes: Routes = [
 			{
 				path: 'validate-ordres-de-mission',
 				component: ValidateOrdreMissionComponent 
+			},
+
+			{
+				path: 'note-de-frais',
+				component: NoteDeFraisComponent 
 			},
 		]
 	}

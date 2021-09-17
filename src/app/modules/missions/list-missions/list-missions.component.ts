@@ -5,7 +5,7 @@ import {  NotificationsService } from 'src/app/core/services/notifications.servi
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from "src/app/core/services/user.service";
 
-import {} from 'google.maps';
+// import {} from 'google.maps';
 
 declare var $;
 

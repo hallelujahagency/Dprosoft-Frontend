@@ -15,11 +15,12 @@ import { OrdresDeMissionComponent } from './ordres-de-mission/ordres-de-mission.
 import { RequestsMissionComponent } from './requests-mission/requests-mission.component';
 
 import { ValidateOrdreMissionComponent } from "./validate-ordre-de-mission/validate-ordre-mission.component";
+import { NoteDeFraisComponent } from './note-de-frais/note-de-frais.component';
 
 
 
 @NgModule({
-  declarations: [ListMissionsComponent, OrdresDeMissionComponent, RequestsMissionComponent,ValidateOrdreMissionComponent],
+  declarations: [ListMissionsComponent, OrdresDeMissionComponent, RequestsMissionComponent,ValidateOrdreMissionComponent,NoteDeFraisComponent],
   imports: [
     CommonModule,
     MissionsRoutingModule,

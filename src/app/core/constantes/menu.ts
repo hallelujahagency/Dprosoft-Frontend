@@ -37,6 +37,10 @@ export interface IMenuItem {
       {
         label: 'Valider ordres de mission',
         to: '../missions/validate-ordres-de-mission'
+      },
+      {
+        label: 'Note de frais',
+        to: '../missions/note-de-frais'
       }
     ]
     
